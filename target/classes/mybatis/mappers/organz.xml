@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="organz">
+
+	<!-- 허주한 -->
+	<insert id="insertGrad" parameterType="organzVo">
+		<![CDATA[
+		insert into organz 
+		values(null, #{orgnzNm}, #{engOrgnzNm}, #{orgnzDstnct}, #{hmpageUrl}, #{telNo}, #{faxNo}, #{addr}, #{detailAddr}, 
+		]]>
+
+		<if test="prntsOrgnzNo == -1 ">
+		<![CDATA[ 
+		 null, null, null, null, #{hmnbrdDstnct});
+		]]>
+		</if>
+		<if test="prntsOrgnzNo != -1">
+		<![CDATA[ 
+		 #{prntsOrgnzNo}, null, null, null, #{hmnbrdDstnct});
+		]]>
+		</if>
+	</insert>
+
+	<insert id="insertLab" parameterType="organzVo">
+		<![CDATA[	
+			insert into organz (ORGNZ_NO, ORGNZ_NM, ENG_ORGNZ_NM, ORGNZ_DSTNCT, HMPAGE_URL, TEL_NO, FAX_NO, ADDR, DETAIL_ADDR, PRNTS_ORGNZ_NO, MAP_PROF_NM, LAB_INTRO, RSRCHR_INFO_TEXT, HMNBRD_DSTNCT  ) 
+			values (null, #{orgnzNm}, #{engOrgnzNm}, #{orgnzDstnct},#{hmpageUrl},#{telNo },#{faxNo},#{addr},#{detailAddr},#{prntsOrgnzNo},#{mapProfNm},#{labIntro},#{rsrchrInfoText},#{hmnbrdDstnct})
+		]]>
+	</insert>
+
+
+	<insert id="insertResrch" parameterType="resrchAcrsltVo">
+		<![CDATA[	
+			insert into resrch_acrslt (RESRCH_ACRSLT_NO, ORGNZ_NO, ACRSLT_DSTNCT, REGST_DT, RESRCH_YYCL, RESRCH_TEXT  ) 
+			values (null, #{orgnzNo}, #{acrsltDstnct}, now() ,#{resrchYycl},#{resrchText})
+		]]>
+	</insert>
+
+
+</mapper>
