@@ -34,7 +34,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${pageContext.servletContext.contextPath }/">모집공고관리</a></li>
+				<li><a href="${pageContext.servletContext.contextPath }/noti/list">모집공고관리</a></li>
 				<li><a href="${pageContext.servletContext.contextPath }/organz/list">기관정보관리</a></li>
 				<li><a href="conference.html">학회</a></li>
 				<li><a href="counseling.html">상담실</a></li>

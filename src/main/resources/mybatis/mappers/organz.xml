@@ -37,5 +37,112 @@
 		]]>
 	</insert>
 
+	<!-- 허주한 -->
+	<select id="getOrgnzList" parameterType="string" resultType="organzVo">
+		<![CDATA[	
+		select orgnz_no orgnzNo, orgnz_nm orgnzNm, ENG_ORGNZ_NM engOrgnzNm, ORGNZ_DSTNCT orgnzDstnct
+		from organz
+		where ORGNZ_DSTNCT like #{type}
+		]]>
+	</select>
+
+	<!-- 허주한 -->
+	<select id="getOrgnzByNo" parameterType="map" resultType="organzVo">
+		<![CDATA[	
+		select orgnz_no orgnzNo, orgnz_nm orgnzNm, ENG_ORGNZ_NM engOrgnzNm, ORGNZ_DSTNCT orgnzDstnct, HMPAGE_URL hmpageUrl, TEL_NO telNo, FAX_NO faxNo, ADDR addr, DETAIL_ADDR detailAddr, PRNTS_ORGNZ_NO prntsOrgnzNo, MAP_PROF_NM mapProfNm, LAB_INTRO labIntro, RSRCHR_INFO_TEXT rsrchrInfoText, 
+		HMNBRD_DSTNCT hmnbrdDstnct 
+		from organz
+		where ORGNZ_DSTNCT=#{type}
+		and orgnz_no = #{no};
+		]]>
+	</select>
+
+	<update id="updateGrad" parameterType="organzVo">
+		<![CDATA[
+		update organz
+		set HMNBRD_DSTNCT=#{hmnbrdDstnct}, ORGNZ_DSTNCT=#{orgnzDstnct}, ORGNZ_NM=#{orgnzNm}, ENG_ORGNZ_NM=#{engOrgnzNm}, HMPAGE_URL=#{hmpageUrl}, TEL_NO=#{telNo}, FAX_NO=#{faxNo}, 
+			ADDR=#{addr}, DETAIL_ADDR=#{detailAddr}, 
+		]]>
+
+		<if test="prntsOrgnzNo != -1">
+		<![CDATA[			
+			PRNTS_ORGNZ_NO=#{prntsOrgnzNo}
+		]]>
+		</if>
+
+		<if test="prntsOrgnzNo == -1">
+		<![CDATA[			
+			PRNTS_ORGNZ_NO=null
+		]]>
+		</if>
+		
+		<![CDATA[
+		where ORGNZ_NO=#{orgnzNo};
+		]]>
+	</update>
+
+	<!-- kwehfaliuefha;eijf;eiajf;iaejf;jf;aoifjeij -->
+
+	<update id="updateOrganz" parameterType="organzVo">
+	<![CDATA[
+		update organz set orgnz_nm=#{orgnzNm},ENG_ORGNZ_NM=#{engOrgnzNm}, ORGNZ_DSTNCT=#{orgnzDstnct}, HMPAGE_URL=#{hmpageUrl}, TEL_NO=#{telNo}, FAX_NO=#{faxNo}, ADDR=#{addr}, DETAIL_ADDR=#{detailAddr}, PRNTS_ORGNZ_NO=#{prntsOrgnzNo}, MAP_PROF_NM=#{mapProfNm}, LAB_INTRO=#{labIntro}, RSRCHR_INFO_TEXT=#{rsrchrInfoText}
+				,HMNBRD_DSTNCT=#{hmnbrdDstnct} where orgnz_no=#{orgnzNo}
+	]]>
+
+	</update>
+
+
+	<!-- 박가혜 -->
+	<select id="getResrchList" resultType="resrchAcrsltVo"
+		parameterType="int">
+		<![CDATA[
+		select RESRCH_ACRSLT_NO resrchAcrsltNo,ORGNZ_NO orgnzNo,ACRSLT_DSTNCT acrsltDstnct,REGST_DT regstDt,RESRCH_YYCL resrchYycl,RESRCH_TEXT resrchText
+		from resrch_acrslt
+		where ORGNZ_NO=#{orgnzNo}
+		]]>
+	</select>
+
+
+	<!-- 박가혜 -->
+	<select id="getResrchNo" resultType="resrchAcrsltVo"
+		parameterType="int">
+		<![CDATA[
+		select RESRCH_ACRSLT_NO resrchAcrsltNo,ORGNZ_NO orgnzNo,ACRSLT_DSTNCT acrsltDstnct,REGST_DT regstDt,RESRCH_YYCL resrchYycl,RESRCH_TEXT resrchText
+		from resrch_acrslt
+		where RESRCH_ACRSLT_NO=#{resrchAcrsltNo}
+		]]>
+	</select>
+
+	<!-- 박가혜 -->
+	<update id="updateResrch" parameterType="resrchAcrsltVo">
+	<![CDATA[
+		update resrch_acrslt set ORGNZ_NO=#{orgnzNo},ACRSLT_DSTNCT=#{acrsltDstnct},REGST_DT=#{regstDt},RESRCH_YYCL=#{resrchYycl},RESRCH_TEXT=#{resrchText}
+		where RESRCH_ACRSLT_NO=#{resrchAcrsltNo}
+	]]>
+
+	</update>
+
+
+	<!-- 박가혜 -->
+	<select id="selectOrganzLabList" resultType="organzVo">
+		<![CDATA[
+		select orgnz_no orgnzNo, orgnz_nm orgnzNm, ENG_ORGNZ_NM engOrgnzNm, ORGNZ_DSTNCT orgnzDstnct, 
+		HMPAGE_URL hmpageUrl, TEL_NO telNo, FAX_NO faxNo, ADDR addr, DETAIL_ADDR detailAddr, PRNTS_ORGNZ_NO prntsOrgnzNo, 
+		MAP_PROF_NM mapProfNm, LAB_INTRO labIntro, RSRCHR_INFO_TEXT rsrchrInfoText, HMNBRD_DSTNCT hmnbrdDstnct
+		from organz
+		where ORGNZ_DSTNCT='연구실'
+		]]>
+	</select>
+
+	<!-- 허주한 -->
+	<select id="getByNo" resultType="organzVo">
+		<![CDATA[
+		select orgnz_no orgnzNo, orgnz_nm orgnzNm, ENG_ORGNZ_NM engOrgnzNm, ORGNZ_DSTNCT orgnzDstnct, HMPAGE_URL hmpageUrl, TEL_NO telNo, FAX_NO faxNo, ADDR addr, DETAIL_ADDR detailAddr, PRNTS_ORGNZ_NO prntsOrgnzNo, MAP_PROF_NM mapProfNm, LAB_INTRO labIntro, RSRCHR_INFO_TEXT rsrchrInfoText,
+				HMNBRD_DSTNCT hmnbrdDstnct
+		from organz
+		where ORGNZ_DSTNCT='연구실'
+		and orgnz_no = #{no};
+		]]>
+	</select>
 
 </mapper>

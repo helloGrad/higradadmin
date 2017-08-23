@@ -12,9 +12,6 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
-<title>Insert title here</title>
-
 </head>
 <body>
 
@@ -23,29 +20,35 @@
 	<div class="container">
 		<!-- ///// filter (대분류) //////-->
 		<div class="row">
-		<h3>메인페이지</h3>
+
 			<div class="col-lg-4 centering">
-				
-				<a id="gradBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/" >대학원</a>
-				<a id="labBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/organz/lablist">연구실</a>
+				<h3>메인페이지</h3>
+				<c:import url="/WEB-INF/views/noti/include/menu.jsp" />
 			</div>
 		</div>
 
 		<hr class="nav-line">
 
-	
+		<!-- ////// filter ///////-->
 		<div class="row">
-			
-
-		
-		
-		
-		
-		
-		
-		
-		
+			<div id="alllist" class="col-lg-12">
+				<c:forEach items="${notiList }" var="list" varStatus="status">
+					<div class="col-md-12">
+						<h3>
+							<a
+								href="${pageContext.servletContext.contextPath }/noti/update?no=${list.slctnNotiNo}&tabnm=${list.slctnNotiDstnct}">${list.slctnTitle }</a>
+						</h3>
+						<hr>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
+
+		<!-- <button id="myBtn">Open Modal</button>  -->
+
+
+
+
 	</div>
 
 	<!--footer-->

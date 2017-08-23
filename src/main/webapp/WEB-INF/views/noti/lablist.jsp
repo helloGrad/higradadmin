@@ -1,3 +1,4 @@
+<!-- 허규준 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -8,12 +9,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/list.css">
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/comparison.css">
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-
-<title>Insert title here</title>
 
 </head>
 <body>
@@ -21,30 +21,32 @@
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
 	<div class="container">
-		<!-- ///// filter (대분류) //////-->
+
 		<div class="row">
-		<h3>메인페이지</h3>
+
 			<div class="col-lg-4 centering">
-				
-				<a id="gradBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/" >대학원</a>
-				<a id="labBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/organz/lablist">연구실</a>
+				<h3>연구실 공고 페이지</h3>
+				<c:import url="/WEB-INF/views/noti/include/menu.jsp" />
 			</div>
 		</div>
-
 		<hr class="nav-line">
 
-	
+		<!-- ////// filter ///////-->
 		<div class="row">
-			
 
-		
-		
-		
-		
-		
-		
-		
-		
+			<div id="labList" class="col-lg-12">
+				<c:forEach items="${notiList }" var="list" varStatus="status">
+					<div class="col-md-12">
+						<h3>
+							<a
+								href="${pageContext.servletContext.contextPath }/noti/update?no=${list.slctnNotiNo}&tabnm=${list.slctnNotiDstnct}">${list.slctnTitle }</a>
+						</h3>
+						<hr>
+					</div>
+				</c:forEach>
+			</div>
+
+
 		</div>
 	</div>
 

@@ -8,12 +8,13 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/list.css">
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/adminform.css">
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
-<title>Insert title here</title>
 
 </head>
 <body>
@@ -21,37 +22,35 @@
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
 	<div class="container">
-		<!-- ///// filter (대분류) //////-->
-		<div class="row">
-		<h3>메인페이지</h3>
-			<div class="col-lg-4 centering">
-				
-				<a id="gradBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/" >대학원</a>
-				<a id="labBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/organz/lablist">연구실</a>
-			</div>
-		</div>
 
 		<hr class="nav-line">
-
-	
+		
 		<div class="row">
 			
 
-		
-		
-		
-		
-		
-		
-		
-		
+			<c:forEach items="${resrchAcrsltList }" var="resrchAcrsltList"
+				varStatus="status">
+
+				<div class="col-md-12">
+					<a href="${pageContext.servletContext.contextPath }/organz/resrchdetail?no=${resrchAcrsltList.resrchAcrsltNo}">${resrchAcrsltList.resrchYycl}/${resrchAcrsltList.acrsltDstnct}</a>
+				</div>
+
+			</c:forEach>
+
+
+
 		</div>
+		
+
+
 	</div>
 
-	<!--footer-->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/list.js"></script>
 
+		
 </body>
 </html>
