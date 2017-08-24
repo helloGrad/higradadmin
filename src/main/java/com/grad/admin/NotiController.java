@@ -69,8 +69,6 @@ public class NotiController {
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	public String insertNoti(@ModelAttribute NotiVo notiVo,						
 			@RequestParam String tabnm) {
-		
-		System.out.println("insert form222");
 		notiService.insertNoti(notiVo, tabnm);
 		return "redirect:/noti/insert";		
 	}
@@ -107,6 +105,8 @@ public class NotiController {
 		return "redirect:/noti/list";
 	}
 	
+
+
 
 	
 

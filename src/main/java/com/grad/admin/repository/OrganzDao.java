@@ -78,6 +78,10 @@ public class OrganzDao {
 		return sqlSession.selectList("organz.selectOrganzLabList");
 	}
 
+	public List<OrganzVo> getResultList(String stext) {		
+		return sqlSession.selectList("organz.getResultList", stext);
+	}
+	
 	public void updateOrganz(OrganzVo organzVo) {
 
 		sqlSession.update("organz.updateOrganz", organzVo);
@@ -90,6 +94,7 @@ public class OrganzDao {
 	public List<ResrchAcrsltVo> getResrchList(int orgnzNo) {
 		return sqlSession.selectList("organz.getResrchList", orgnzNo);
 	}
+	
 
 	public ResrchAcrsltVo getResrchNo(int resrchAcrsltNo) {
 		return sqlSession.selectOne("organz.getResrchNo", resrchAcrsltNo);
@@ -100,4 +105,5 @@ public class OrganzDao {
 		sqlSession.update("organz.updateResrch", resrchAcrsltVo);
 
 	}
+
 }

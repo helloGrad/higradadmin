@@ -52,10 +52,6 @@
 			</div>
 		</c:forEach>
 
-
-		
-
-
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />

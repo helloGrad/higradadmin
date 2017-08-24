@@ -41,7 +41,7 @@
 		<div class="row">
 			
 
-			<div id="lab" class="col-lg-8">
+			<div id="lab" class="col-lg-12">
 				<c:forEach items="${organzLabList }" var="list" varStatus="status">
 					<c:if test="${list.orgnzDstnct == '연구실' }">
 						<div class="col-md-12">
@@ -54,9 +54,7 @@
 					</c:if>
 				</c:forEach>
 
-			</div>
-		
-		
+			</div>		
 
 		</div>
 	</div>

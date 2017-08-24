@@ -40,8 +40,6 @@ public class NotiService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("notiVo", notiVo);
 		map.put("tabnm", tabnm);
-		
-		//System.out.println(notiVo);
 		notiDao.insertNoti(map);		
 	}
 

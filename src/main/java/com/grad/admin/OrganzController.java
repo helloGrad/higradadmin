@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.grad.admin.security.Auth;
 import com.grad.admin.service.OrganzService;
@@ -196,4 +197,32 @@ public class OrganzController {
 		return "redirect:/organz/lablist";
 	}
 
+	@RequestMapping(value = "/search")
+	public String search(@RequestParam(value = "stext", required = true, defaultValue = "**") String stext
+			, Model model) {	
+		
+		System.out.println(stext);
+		model.addAttribute("list",organzService.getResultList(stext));
+		return "/organz/search";
+	}
+	
+	
+	
+//	@Auth(role=Auth.Role.ADMIN) 
+//	@RequestMapping(value = "/search", method = RequestMethod.POST)
+//	public String notiDetail(c) {
+//
+//		System.out.println(stext);
+//		
+//		List<OrganzVo> list1 = organzService.getResultList(stext);
+//		
+//		for(OrganzVo list : list1) {
+//			System.out.println(list);
+//		}
+//		
+//		model.addAttribute("list",organzService.getResultList(stext));
+//		
+//		return "redirect:/organz/searchresult";
+//	}
+	
 }

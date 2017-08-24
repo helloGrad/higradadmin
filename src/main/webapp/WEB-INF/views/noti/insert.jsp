@@ -14,6 +14,19 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+
+<script type="text/javascript">
+	var openWin;
+
+	function openOrganzSearch() {
+		// window.name = "부모창 이름"; 
+		window.name = "parentForm";
+		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
+		openWin = window.open("/admin/organz/search", "childForm",
+				"width=570, height=350, resizable = no, scrollbars = no");
+	}
+</script>
+
 </head>
 <body>
 
@@ -55,7 +68,14 @@
 								class="form-control input-lg" id="orgnzNo" name="orgnzNo"
 								type="text">
 						</div>
+
 						<div class="form-group">
+							<label for="inputlg"> ▣ 기관정보</label> <input
+								class="form-control input-lg" id="organzinput" type="text">
+							<input type="button" value="기관검색하기" onclick="openOrganzSearch()">
+						</div>
+
+								<div class="form-group">
 							<label> ▣ 모집내용 </label>
 							<textarea class="form-control" rows="2" id="slctnText"
 								name="slctnText" placeholder="원서접수 유의사항"></textarea>
@@ -435,6 +455,8 @@
 		</div>
 
 	</div>
+
+
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<script type="text/javascript"

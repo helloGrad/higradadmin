@@ -36,13 +36,6 @@
 	
 		<div class="row">
 			
-
-		
-		
-		
-		
-		
-		
 		
 		
 		</div>

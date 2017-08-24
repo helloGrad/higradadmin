@@ -44,7 +44,7 @@ public class OrganzService {
 	 */
 	public boolean insertGrad(OrganzVo organzVo, String tabnm, String prntsOrgnzStr) {
 		if (prntsOrgnzStr.isEmpty() || prntsOrgnzStr.equals(null)) {
-			organzVo.setPrntsOrgnzNo(-1);
+			organzVo.setPrntsOrgnzNo(0);
 		} else {
 			organzVo.setPrntsOrgnzNo(Integer.parseInt(prntsOrgnzStr));
 		}
@@ -78,7 +78,7 @@ public class OrganzService {
 	public boolean update(OrganzVo organzVo, String type, String prntsOrgnzStr) {
 		// TODO Auto-generated method stub
 		if (prntsOrgnzStr.isEmpty() || prntsOrgnzStr.equals(null) || prntsOrgnzStr.equals("0")) {
-			organzVo.setPrntsOrgnzNo(-1);
+			organzVo.setPrntsOrgnzNo(0);
 		} else {
 			organzVo.setPrntsOrgnzNo(Integer.parseInt(prntsOrgnzStr));
 		}
@@ -140,6 +140,10 @@ public class OrganzService {
 
 		organzDao.updateResrch(resrchAcrsltVo);
 
+	}
+
+	public List<OrganzVo> getResultList(String stext) {
+		return organzDao.getResultList(stext);
 	}
 
 }
