@@ -8,10 +8,17 @@
 <html>
 <script type="text/javascript">
 
-var setPdata = function(no, name){
-	console.log(no+name);
-	 opener.document.getElementById("orgnzNo").value = no;
-	 opener.document.getElementById("organzinput").value = name;
+var setPdata = function(no, name, type){
+	console.log(no+name+type);
+	if(type==='대학원'){
+		opener.document.getElementById("orgnzNo").value = no;
+		 opener.document.getElementById("organzinput").value = name;	
+	}
+	else if(type==='연구실'){
+		opener.document.getElementById("orgnzlabNo").value = no;
+		 opener.document.getElementById("organzinputlab").value = name;
+	}
+	 
 	 window.close();
 }
 
@@ -37,7 +44,9 @@ var setPdata = function(no, name){
 	<br>
 
 	<c:forEach items="${list }" var="list" varStatus="status">
-		<p>${list.orgnzNm }<input type="button" value="선택" onclick="setPdata(${list.orgnzNo},'${list.orgnzNm }')"></p>
+		<p>${list.orgnzNm }<input type="button" value="선택"
+				onclick="setPdata(${list.orgnzNo},'${list.orgnzNm }','${list.orgnzDstnct }')">
+		</p>
 	</c:forEach>
 	<br>
 	<br>

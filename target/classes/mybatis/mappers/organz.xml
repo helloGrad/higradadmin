@@ -160,9 +160,9 @@
 	</select>
 	
 	<!--정예린 -->
-	<select id="getResultList" parameterType="string" resultType="organzVo">
+	<select id="getResultList" parameterType="map" resultType="organzVo">
 		<![CDATA[	
-			SELECT  o2.orgnz_no orgnzNo, hierarchy_sys_connect_by_textpath(' ', o2.orgnz_no) AS orgnzNm
+			SELECT  o2.orgnz_no orgnzNo, hierarchy_sys_connect_by_textpath(' ', o2.orgnz_no) AS orgnzNm, o2.ORGNZ_DSTNCT orgnzDstnct
 			FROM    (SELECT  hierarchy_connect_by_parent_eq_prior_id_with_level(ORGNZ_NO, 4) AS id,
                 CAST(@level AS SIGNED) AS level
         			FROM    (SELECT  @start_with := 0,
@@ -170,7 +170,8 @@
                         @level := 0
                 ) vars, organz
         	WHERE   @id IS NOT NULL) o1 JOIN    organz o2 ON      o2.ORGNZ_NO = o1.id
-			where hierarchy_sys_connect_by_textpath('\n', o2.orgnz_no) like '%${_parameter }%'
+			where hierarchy_sys_connect_by_textpath('\n', o2.orgnz_no) like '%${stext }%'
+			and o2.ORGNZ_DSTNCT = #{type }
 		]]>
 	</select>
 

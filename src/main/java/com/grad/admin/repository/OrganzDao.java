@@ -78,10 +78,6 @@ public class OrganzDao {
 		return sqlSession.selectList("organz.selectOrganzLabList");
 	}
 
-	public List<OrganzVo> getResultList(String stext) {		
-		return sqlSession.selectList("organz.getResultList", stext);
-	}
-	
 	public void updateOrganz(OrganzVo organzVo) {
 
 		sqlSession.update("organz.updateOrganz", organzVo);
@@ -105,5 +101,14 @@ public class OrganzDao {
 		sqlSession.update("organz.updateResrch", resrchAcrsltVo);
 
 	}
+	
+	
+	/*
+	 * 정예린
+	 */
+	public List<OrganzVo> getResultList(Map<String, Object> map) {		
+		return sqlSession.selectList("organz.getResultList", map);
+	}
+	
 
 }

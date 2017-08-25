@@ -1,6 +1,8 @@
 package com.grad.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -197,32 +199,25 @@ public class OrganzController {
 		return "redirect:/organz/lablist";
 	}
 
+	/*
+	 * 정예린
+	 */
+	@Auth(role = Auth.Role.ADMIN)
 	@RequestMapping(value = "/search")
-	public String search(@RequestParam(value = "stext", required = true, defaultValue = "**") String stext
+	public String search(@RequestParam(value = "stext", required = true, defaultValue = "**") String stext,
+			@RequestParam(value = "type", required = true, defaultValue = "") String type
 			, Model model) {	
 		
-		System.out.println(stext);
-		model.addAttribute("list",organzService.getResultList(stext));
+		//System.out.println(stext);
+		
+		System.out.println(type);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("type", type);
+		map.put("stext", stext);
+		model.addAttribute("list",organzService.getResultList(map));
 		return "/organz/search";
 	}
 	
-	
-	
-//	@Auth(role=Auth.Role.ADMIN) 
-//	@RequestMapping(value = "/search", method = RequestMethod.POST)
-//	public String notiDetail(c) {
-//
-//		System.out.println(stext);
-//		
-//		List<OrganzVo> list1 = organzService.getResultList(stext);
-//		
-//		for(OrganzVo list : list1) {
-//			System.out.println(list);
-//		}
-//		
-//		model.addAttribute("list",organzService.getResultList(stext));
-//		
-//		return "redirect:/organz/searchresult";
-//	}
+
 	
 }

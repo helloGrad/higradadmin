@@ -18,11 +18,11 @@
 <script type="text/javascript">
 	var openWin;
 
-	function openOrganzSearch() {
+	function openOrganzSearch(type) {
 		// window.name = "부모창 이름"; 
 		window.name = "parentForm";
 		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
-		openWin = window.open("/admin/organz/search", "childForm",
+		openWin = window.open("/admin/organz/search?type=" + type, "childForm",
 				"width=570, height=350, resizable = no, scrollbars = no");
 	}
 </script>
@@ -70,12 +70,13 @@
 						</div>
 
 						<div class="form-group">
-							<label for="inputlg"> ▣ 기관정보</label> <input
+							<label for="inputlg"> ▣ 기관명</label> <input
 								class="form-control input-lg" id="organzinput" type="text">
-							<input type="button" value="기관검색하기" onclick="openOrganzSearch()">
+							<input type="button" value="기관검색하기"
+								onclick="openOrganzSearch('대학원')">
 						</div>
 
-								<div class="form-group">
+						<div class="form-group">
 							<label> ▣ 모집내용 </label>
 							<textarea class="form-control" rows="2" id="slctnText"
 								name="slctnText" placeholder="원서접수 유의사항"></textarea>
@@ -247,8 +248,15 @@
 						</div>
 						<div class="form-group">
 							<label for="inputlg"> ▣ 기관번호</label> <input
-								class="form-control input-lg" id="orgnzNo" name="orgnzNo"
+								class="form-control input-lg" id="orgnzlabNo" name="orgnzNo"
 								type="text">
+						</div>
+
+						<div class="form-group">
+							<label for="inputlg"> ▣ 기관명</label> <input
+								class="form-control input-lg" id="organzinputlab" type="text">
+							<input type="button" value="기관검색하기"
+								onclick="openOrganzSearch('연구실')">
 						</div>
 						<div class="row">
 							<!--////////////////////// 모집시작일 //////////////////////-->

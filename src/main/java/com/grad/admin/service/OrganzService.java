@@ -142,8 +142,11 @@ public class OrganzService {
 
 	}
 
-	public List<OrganzVo> getResultList(String stext) {
-		return organzDao.getResultList(stext);
+	/*
+	 * 정예린
+	 */
+	public List<OrganzVo> getResultList(Map<String, Object> map) {
+		return organzDao.getResultList(map);
 	}
 
 }
