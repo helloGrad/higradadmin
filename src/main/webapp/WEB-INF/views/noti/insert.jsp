@@ -14,19 +14,6 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
-<script type="text/javascript">
-	var openWin;
-
-	function openOrganzSearch(type) {
-		// window.name = "부모창 이름"; 
-		window.name = "parentForm";
-		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
-		openWin = window.open("/admin/organz/search?type=" + type, "childForm",
-				"width=570, height=350, resizable = no, scrollbars = no");
-	}
-</script>
-
 </head>
 <body>
 
@@ -66,14 +53,14 @@
 						<div class="form-group">
 							<label for="inputlg"> ▣ 기관번호</label> <input
 								class="form-control input-lg" id="orgnzNo" name="orgnzNo"
-								type="text">
+								type="text" readonly>
 						</div>
 
 						<div class="form-group">
 							<label for="inputlg"> ▣ 기관명</label> <input
-								class="form-control input-lg" id="organzinput" type="text">
+								class="form-control input-lg" id="organzinput" type="text" readonly>
 							<input type="button" value="기관검색하기"
-								onclick="openOrganzSearch('대학원')">
+								onclick="openOrganzSearch('대학원')" >
 						</div>
 
 						<div class="form-group">
@@ -249,12 +236,12 @@
 						<div class="form-group">
 							<label for="inputlg"> ▣ 기관번호</label> <input
 								class="form-control input-lg" id="orgnzlabNo" name="orgnzNo"
-								type="text">
+								type="text" readonly>
 						</div>
 
 						<div class="form-group">
 							<label for="inputlg"> ▣ 기관명</label> <input
-								class="form-control input-lg" id="organzinputlab" type="text">
+								class="form-control input-lg" id="organzinputlab" type="text" readonly>
 							<input type="button" value="기관검색하기"
 								onclick="openOrganzSearch('연구실')">
 						</div>
@@ -470,6 +457,8 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/list.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/notijs/notiinsert.js"></script>
 </body>
 </html>

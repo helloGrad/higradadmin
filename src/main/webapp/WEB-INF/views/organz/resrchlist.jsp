@@ -13,44 +13,31 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-
-
 </head>
 <body>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
 	<div class="container">
-
 		<hr class="nav-line">
-		
 		<div class="row">
-			
-
 			<c:forEach items="${resrchAcrsltList }" var="resrchAcrsltList"
 				varStatus="status">
-
 				<div class="col-md-12">
-					<a href="${pageContext.servletContext.contextPath }/organz/resrchdetail?no=${resrchAcrsltList.resrchAcrsltNo}">${resrchAcrsltList.resrchYycl}/${resrchAcrsltList.acrsltDstnct}</a>
+					<a
+						href="${pageContext.servletContext.contextPath }/organz/resrchdetail?no=${resrchAcrsltList.resrchAcrsltNo}">${resrchAcrsltList.resrchYycl}/${resrchAcrsltList.acrsltDstnct}</a>
 				</div>
 
 			</c:forEach>
-
-
-
 		</div>
-		
-
-
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/list.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/organzjs/organzlist.js"></script>
 
-		
+
 </body>
 </html>

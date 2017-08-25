@@ -15,6 +15,7 @@ public class OrganzVo {
 	private String labIntro;
 	private String rsrchrInfoText;
 	private String hmnbrdDstnct;
+	private String orgnzFullNm;
 	
 	public int getOrgnzNo() {
 		return orgnzNo;
@@ -100,14 +101,22 @@ public class OrganzVo {
 	public void setHmnbrdDstnct(String hmnbrdDstnct) {
 		this.hmnbrdDstnct = hmnbrdDstnct;
 	}
+	
+	public String getOrgnzFullNm() {
+		return orgnzFullNm;
+	}
+	public void setOrgnzFullNm(String orgnzFullNm) {
+		this.orgnzFullNm = orgnzFullNm;
+	}
 	@Override
 	public String toString() {
 		return "OrganzVo [orgnzNo=" + orgnzNo + ", orgnzNm=" + orgnzNm + ", engOrgnzNm=" + engOrgnzNm + ", orgnzDstnct="
 				+ orgnzDstnct + ", hmpageUrl=" + hmpageUrl + ", telNo=" + telNo + ", faxNo=" + faxNo + ", addr=" + addr
 				+ ", detailAddr=" + detailAddr + ", prntsOrgnzNo=" + prntsOrgnzNo + ", mapProfNm=" + mapProfNm
 				+ ", labIntro=" + labIntro + ", rsrchrInfoText=" + rsrchrInfoText + ", hmnbrdDstnct=" + hmnbrdDstnct
-				+ "]";
+				+ ", orgnzFullNm=" + orgnzFullNm + "]";
 	}
+	
 		
 
 }

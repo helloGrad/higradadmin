@@ -10,7 +10,7 @@
 
 var setPdata = function(no, name, type){
 	console.log(no+name+type);
-	if(type==='대학원'){
+	if(type==='대학원' || type==='대학교' || type==='학과'){
 		opener.document.getElementById("orgnzNo").value = no;
 		 opener.document.getElementById("organzinput").value = name;	
 	}

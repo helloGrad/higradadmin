@@ -34,7 +34,10 @@
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
 	<div class="container">
-
+		<div class="row">
+			<c:import url="/WEB-INF/views/organz/include/menu.jsp" />
+			
+		</div>
 		<hr class="nav-line">
 		
 	
