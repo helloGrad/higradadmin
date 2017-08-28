@@ -14,26 +14,45 @@
 		]]>
 	</select>
 
-	<!-- 허주한 -->
-	<select id="getOrgnzByNo" parameterType="map" resultType="organzVo">
-		<![CDATA[	
-		select orgnz_no orgnzNo, orgnz_nm orgnzNm, ENG_ORGNZ_NM engOrgnzNm, ORGNZ_DSTNCT orgnzDstnct, HMPAGE_URL hmpageUrl, TEL_NO telNo, FAX_NO faxNo, ADDR addr, DETAIL_ADDR detailAddr, PRNTS_ORGNZ_NO prntsOrgnzNo, MAP_PROF_NM mapProfNm, LAB_INTRO labIntro, RSRCHR_INFO_TEXT rsrchrInfoText, 
-		HMNBRD_DSTNCT hmnbrdDstnct 
+
+	<!-- 정예린 -->
+	<select id="getUniByNo" parameterType="map" resultType="organzVo">
+	<![CDATA[
+		select orgnz_no orgnzNo, orgnz_nm orgnzNm, ENG_ORGNZ_NM engOrgnzNm,
+		ORGNZ_DSTNCT orgnzDstnct, HMPAGE_URL hmpageUrl, TEL_NO telNo, FAX_NO
+		faxNo, ADDR addr, DETAIL_ADDR detailAddr, PRNTS_ORGNZ_NO prntsOrgnzNo, orgnz_full_nm orgnzFullNm,
+		MAP_PROF_NM mapProfNm, LAB_INTRO labIntro, RSRCHR_INFO_TEXT rsrchrInfoText, HMNBRD_DSTNCT hmnbrdDstnct
 		from organz
 		where ORGNZ_DSTNCT=#{type}
-		and orgnz_no = #{no};
+		and orgnz_no = #{no}
+		]]>
+	</select>
+
+	<!-- 허주한 정예린-->
+	<select id="getOrgnzByNo" parameterType="map" resultType="organzVo">
+		<![CDATA[		
+		select o1.orgnz_no orgnzNo, o1.orgnz_nm orgnzNm, o1.ENG_ORGNZ_NM engOrgnzNm, o1.ORGNZ_DSTNCT orgnzDstnct, o1.HMPAGE_URL hmpageUrl, 
+		o1.TEL_NO telNo, o1.FAX_NO faxNo, o1.ADDR addr, o1.DETAIL_ADDR detailAddr, 
+		o1.PRNTS_ORGNZ_NO prntsOrgnzNo, o2.orgnz_full_nm orgnzFullNm, o1.MAP_PROF_NM mapProfNm, o1.LAB_INTRO labIntro, o1.RSRCHR_INFO_TEXT rsrchrInfoText, 
+		o1.HMNBRD_DSTNCT hmnbrdDstnct 
+		from organz o1, organz o2
+		where o1.ORGNZ_DSTNCT=#{type}
+		and o1.orgnz_no = #{no}
+		and o1.PRNTS_ORGNZ_NO=o2.orgnz_no
 		]]>
 	</select>
 
 
-	<!-- 허주한 -->
+	<!-- 허주한 정예린 -->
 	<select id="getByNo" resultType="organzVo">
 		<![CDATA[
-		select orgnz_no orgnzNo, orgnz_nm orgnzNm, ENG_ORGNZ_NM engOrgnzNm, ORGNZ_DSTNCT orgnzDstnct, HMPAGE_URL hmpageUrl, TEL_NO telNo, FAX_NO faxNo, ADDR addr, DETAIL_ADDR detailAddr, PRNTS_ORGNZ_NO prntsOrgnzNo, MAP_PROF_NM mapProfNm, LAB_INTRO labIntro, RSRCHR_INFO_TEXT rsrchrInfoText,
-				HMNBRD_DSTNCT hmnbrdDstnct
-		from organz
-		where ORGNZ_DSTNCT='연구실'
-		and orgnz_no = #{no};
+		select o1.orgnz_no orgnzNo, o1.orgnz_nm orgnzNm, o1.ENG_ORGNZ_NM engOrgnzNm, o1.ORGNZ_DSTNCT orgnzDstnct, o1.HMPAGE_URL hmpageUrl, o1.TEL_NO telNo, o1.FAX_NO faxNo, o1.ADDR addr, 
+		o1.DETAIL_ADDR detailAddr, o1.PRNTS_ORGNZ_NO prntsOrgnzNo, o1.MAP_PROF_NM mapProfNm, o1.LAB_INTRO labIntro, o1.RSRCHR_INFO_TEXT rsrchrInfoText, o1.HMNBRD_DSTNCT hmnbrdDstnct, 
+		o2.orgnz_full_nm orgnzFullNm
+		from organz o1, organz o2
+		where o1.ORGNZ_DSTNCT='연구실'
+		and o1.orgnz_no = #{no}
+		and o1.PRNTS_ORGNZ_NO=o2.orgnz_no
 		]]>
 	</select>
 
@@ -73,8 +92,8 @@
 
 
 	<!-- insert -->
-	
-	
+
+
 	<!-- 허주한 -->
 	<insert id="insertGrad" parameterType="organzVo">
 		<![CDATA[
@@ -92,12 +111,12 @@
 		 #{prntsOrgnzNo}, #{hmnbrdDstnct},concat(#{orgnzFullNm},' ',#{orgnzNm}));
 		]]>
 		</if>
-		
+
 		<selectKey keyProperty="id" resultType="int">
 		<![CDATA[ 
         SELECT LAST_INSERT_ID()
         ]]>
-	    </selectKey>
+		</selectKey>
 	</insert>
 
 	<!-- 박가혜 -->
@@ -118,7 +137,7 @@
 
 
 	<!-- update -->
-	<!-- 허주한 -->
+	<!-- 허주한  정예린-->
 	<update id="updateGrad" parameterType="organzVo">
 		<![CDATA[
 		update organz
@@ -126,15 +145,14 @@
 			ADDR=#{addr}, DETAIL_ADDR=#{detailAddr}, 
 		]]>
 
-		<if test="prntsOrgnzNo != -1">
-		<![CDATA[			
-			PRNTS_ORGNZ_NO=#{prntsOrgnzNo}
+		<if test="prntsOrgnzNo == -1 ">
+		<![CDATA[ 
+		 PRNTS_ORGNZ_NO=0, ORGNZ_FULL_NM=#{orgnzNm}
 		]]>
 		</if>
-
-		<if test="prntsOrgnzNo == -1">
-		<![CDATA[			
-			PRNTS_ORGNZ_NO=null
+		<if test="prntsOrgnzNo != -1">
+		<![CDATA[ 
+		 PRNTS_ORGNZ_NO=#{prntsOrgnzNo}, ORGNZ_FULL_NM=concat(#{orgnzFullNm},' ',#{orgnzNm})
 		]]>
 		</if>
 		
@@ -144,11 +162,13 @@
 	</update>
 
 
-	<!-- 박가혜 -->
+	<!-- 박가혜 정예린 -->
 	<update id="updateOrganz" parameterType="organzVo">
 	<![CDATA[
-		update organz set orgnz_nm=#{orgnzNm},ENG_ORGNZ_NM=#{engOrgnzNm}, ORGNZ_DSTNCT=#{orgnzDstnct}, HMPAGE_URL=#{hmpageUrl}, TEL_NO=#{telNo}, FAX_NO=#{faxNo}, ADDR=#{addr}, DETAIL_ADDR=#{detailAddr}, PRNTS_ORGNZ_NO=#{prntsOrgnzNo}, MAP_PROF_NM=#{mapProfNm}, LAB_INTRO=#{labIntro}, RSRCHR_INFO_TEXT=#{rsrchrInfoText}
-				,HMNBRD_DSTNCT=#{hmnbrdDstnct} where orgnz_no=#{orgnzNo}
+		update organz set orgnz_nm=#{orgnzNm},ENG_ORGNZ_NM=#{engOrgnzNm}, ORGNZ_DSTNCT=#{orgnzDstnct}, HMPAGE_URL=#{hmpageUrl}, 
+		TEL_NO=#{telNo}, FAX_NO=#{faxNo}, ADDR=#{addr}, DETAIL_ADDR=#{detailAddr}, PRNTS_ORGNZ_NO=#{prntsOrgnzNo}, 
+		MAP_PROF_NM=#{mapProfNm}, LAB_INTRO=#{labIntro}, RSRCHR_INFO_TEXT=#{rsrchrInfoText},
+		HMNBRD_DSTNCT=#{hmnbrdDstnct}, ORGNZ_FULL_NM=concat(#{orgnzFullNm},' ',#{orgnzNm}) where orgnz_no=#{orgnzNo}
 	]]>
 	</update>
 
@@ -187,17 +207,23 @@
 	<!--정예린 -->
 	<select id="getResultList" parameterType="map" resultType="organzVo">
 		<![CDATA[	
-			SELECT  o2.orgnz_no orgnzNo, hierarchy_sys_connect_by_textpath(' ', o2.orgnz_no) AS orgnzNm, o2.ORGNZ_DSTNCT orgnzDstnct
-			FROM    (SELECT  hierarchy_connect_by_parent_eq_prior_id_with_level(ORGNZ_NO, 4) AS id,
-                CAST(@level AS SIGNED) AS level
-        			FROM    (SELECT  @start_with := 0,
-                        @id := @start_with,
-                        @level := 0
-                ) vars, organz
-        	WHERE   @id IS NOT NULL) o1 JOIN    organz o2 ON      o2.ORGNZ_NO = o1.id
-			where hierarchy_sys_connect_by_textpath('\n', o2.orgnz_no) like '%${stext }%'
-			and o2.ORGNZ_DSTNCT = #{type }
+			select orgnz_no orgnzNo, orgnz_full_nm orgnzNm, orgnz_dstnct orgnzDstnct
+			from organz
+			where orgnz_full_nm like '%${stext }%'
+			and ORGNZ_DSTNCT = #{type }
 		]]>
 	</select>
+	
+	<!--정예린 연구실의 부모를 찾을 경우 대학원, 학과를 모두 찾음-->
+	<select id="getResultList2" parameterType="map" resultType="organzVo">
+		<![CDATA[	
+			select orgnz_no orgnzNo, orgnz_full_nm orgnzNm, orgnz_dstnct orgnzDstnct
+			from organz
+			where orgnz_full_nm like '%${stext }%'
+			and (orgnz_dstnct=#{type } or orgnz_dstnct=#{type2 })
+		]]>
+	</select>
+	
+
 
 </mapper>

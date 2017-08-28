@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	pageContext.setAttribute("space", " ");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -72,10 +77,20 @@ textarea {
 							value="${organzLabList.addr }"> <br> 세부주소 : <input
 							type="text" class="form-control" id="detailAddr"
 							name="detailAddr" value="${organzLabList.detailAddr }"> <br>
-						부모기관번호 : <input type="text" class="form-control" id="prntsOrgnzNo"
-							name="prntsOrgnzNo" value="${organzLabList.prntsOrgnzNo }"
-							readonly> <br> <br> 교수님 성명: <input type="text"
-							class="form-control" id="mapProfNm" name="mapProfNm"
+						<div class="form-group">
+							<label for="inputlg"> ▣ 부모기관번호</label> <input
+								class="form-control input-lg" id="orgnzNo1"
+								name="prntsOrgnzNo" type="text" value="${organzLabList.prntsOrgnzNo }"
+								readonly>
+						</div>
+						<div class="form-group">
+							<label for="inputlg"> ▣ 부모기관명</label> <input
+								class="form-control input-lg" id="organzinput" type="text" name="orgnzFullNm"
+								value="${organzLabList.orgnzFullNm }" readonly> <input
+								type="button" value="기관검색하기" onclick="openOrganzSearch('연구실업데이트')">
+						</div>
+						<br> 교수님 성명: <input type="text" class="form-control"
+							id="mapProfNm" name="mapProfNm"
 							value="${organzLabList.mapProfNm}"> <br> 연구실 소개:
 						<textarea class="form-control" onkeydown="resize(this)"
 							onkeyup="resize(this)" id="labIntro" name="labIntro">${organzLabList.labIntro}</textarea>
@@ -117,7 +132,7 @@ textarea {
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/organzlist.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
 
 
 </body>

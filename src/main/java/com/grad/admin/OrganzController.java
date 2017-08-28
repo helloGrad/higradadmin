@@ -200,6 +200,7 @@ public class OrganzController {
 		/*
 		 * 박가혜
 		 */
+		System.out.println(type);
 		if (type.equals("연구실")) {
 
 			organzService.updateOrganz(organzVo);
@@ -247,12 +248,21 @@ public class OrganzController {
 	public String search(@RequestParam(value = "stext", required = true, defaultValue = "**") String stext,
 			@RequestParam(value = "type", required = true, defaultValue = "") String type, Model model) {
 
-		// System.out.println(stext);
-
-		System.out.println(type);
+		System.out.println(stext);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println("연구실 기관 update : "+type);
 		map.put("type", type);
 		map.put("stext", stext);
+		
+		
+		if(type.equals("연구실업데이트")) {
+			map.put("type2","대학원");
+			map.put("type", "학과");
+		}
+
+		
 		model.addAttribute("list", organzService.getResultList(map));
 		return "/organz/search";
 	}

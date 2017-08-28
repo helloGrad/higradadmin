@@ -11,14 +11,14 @@
 var setPdata = function(no, name, type){
 	console.log(no+name+type);
 	if(type==='대학원' || type==='대학교' || type==='학과'){
-		opener.document.getElementById("orgnzNo").value = no;
+		opener.document.getElementById("orgnzNo1").value = no;
 		 opener.document.getElementById("organzinput").value = name;	
 	}
 	else if(type==='연구실'){
 		opener.document.getElementById("orgnzlabNo").value = no;
 		 opener.document.getElementById("organzinputlab").value = name;
 	}
-	 
+
 	 window.close();
 }
 

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	pageContext.setAttribute("space", " ");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,8 +40,8 @@
 				<form class="login-form" id="login-form" name="loginform"
 					method="post"
 					action="${pageContext.servletContext.contextPath }/noti/update">
-					<input type="hidden" name="tabnm" value="grad">
-					<input type="hidden" name="slctnNotiNo" value="${vo.slctnNotiNo }">
+					<input type="hidden" name="tabnm" value="grad"> <input
+						type="hidden" name="slctnNotiNo" value="${vo.slctnNotiNo }">
 					<input type="hidden" name="adminNo" value="${authUser.mbNo }">
 					<!--////////////////////// 제목 //////////////////////-->
 
@@ -48,11 +53,21 @@
 								class="form-control input-lg" id="slctnTitle" name="slctnTitle"
 								type="text" value="${vo.slctnTitle }">
 						</div>
+
 						<div class="form-group">
 							<label for="inputlg"> ▣ 기관번호</label> <input
-								class="form-control input-lg" id="orgnzNo" name="orgnzNo"
-								type="text" value="${vo.orgnzNo }">
+								class="form-control input-lg" id="orgnzNo1" name="orgnzNo"
+								type="text" value="${vo.orgnzNo }" readonly>
 						</div>
+
+						<div class="form-group">
+							<label for="inputlg"> ▣ 기관명</label> <input
+								class="form-control input-lg" id="organzinput" type="text"
+								value="${vo.orgnzFullNm }" readonly>
+							<input type="button" value="기관검색하기"
+								onclick="openOrganzSearch('대학원')">
+						</div>
+
 						<div class="form-group">
 							<label> ▣ 모집내용 </label>
 							<textarea class="form-control" rows="2" id="slctnText"
@@ -62,7 +77,7 @@
 						<div class="form-group">
 							<label for="inputlg"> ▣ 대학원 모집 url</label> <input
 								class="form-control input-lg" id="slctnNotiUrl"
-								name="slctnNotiUrl" type="text"" value="${vo.slctnNotiUrl }">
+								name="slctnNotiUrl" type="text" " value="${vo.slctnNotiUrl }">
 						</div>
 						<div class="row">
 							<!--////////////////////// 모집시작일 //////////////////////-->
@@ -209,5 +224,7 @@
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
 </body>
 </html>

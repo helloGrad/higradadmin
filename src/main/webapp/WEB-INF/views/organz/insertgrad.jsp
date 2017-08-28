@@ -60,12 +60,12 @@
 						type="text" class="form-control" id="detailAddr" name="detailAddr">
 					<div id="organzinfo">
 						<div class="form-group">
-							<label for="inputlg"> ▣ 기관번호</label> <input
-								class="form-control input-lg" id="orgnzNo" name="prntsOrgnzStr"
+							<label for="inputlg"> ▣ 부모기관번호</label> <input
+								class="form-control input-lg" id="orgnzNo1" name="prntsOrgnzStr"
 								type="text" readonly>
 						</div>
 						<div class="form-group">
-							<label for="inputlg"> ▣ 기관명</label> <input
+							<label for="inputlg"> ▣ 부모기관명</label> <input
 								class="form-control input-lg" id="organzinput"
 								name="orgnzFullNm" type="text" readonly>
 							<div id="search"></div>

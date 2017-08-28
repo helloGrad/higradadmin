@@ -9,8 +9,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/list.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/comparison.css">
-<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

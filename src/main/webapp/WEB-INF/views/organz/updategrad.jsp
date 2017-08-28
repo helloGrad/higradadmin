@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,15 +18,20 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$("#hmnbrdDstnct").val("${vo.hmnbrdDstnct}").attr("selected",
-				"selected");
-		$("#orgnzDstnct").val("${vo.orgnzDstnct}").attr("selected", "selected");
+	$(
+			function() {
+				$("#hmnbrdDstnct").val("${vo.hmnbrdDstnct}").attr("selected",
+						"selected");
+				$("#orgnzDstnct").val("${vo.orgnzDstnct}").attr("selected",
+						"selected");
 
-		$("textarea.autosize").on('keydown keyup', function() {
-			$(this).height(1).height($(this).prop('scrollHeight') + 12);
-		});
-	})
+				$("textarea.autosize").on(
+						'keydown keyup',
+						function() {
+							$(this).height(1).height(
+									$(this).prop('scrollHeight') + 12);
+						});
+			})
 </script>
 
 <style>
@@ -58,8 +66,8 @@ textarea.autosize {
 			<form class="updateform" id="updateform" name="updateform"
 				method="post"
 				action="${pageContext.servletContext.contextPath }/organz/update">
-				<input type="hidden" id="type" name="type" value="대학원"> <input
-					type="hidden" id="orgnzNo" name="orgnzNo" value="${vo.orgnzNo }">
+				<input type="hidden" id="type" name="type" value="대학원"> 
+				<input type="hidden" id="orgnzNo" name="orgnzNo" value="${vo.orgnzNo }">
 
 				<div class="form-group">
 
@@ -82,9 +90,34 @@ textarea.autosize {
 						type="text" class="form-control" id="addr" name="addr"
 						value="${vo.addr }"> <label>상세주소:</label> <input
 						type="text" class="form-control" id="detailAddr" name="detailAddr"
-						value="${vo.detailAddr }"> <label>부모번호:</label> <input
-						type="text" class="form-control" id="prntsOrgnzStr"
-						name="prntsOrgnzStr" value="${vo.prntsOrgnzNo }" readonly>
+						value="${vo.detailAddr }">
+
+					<div class="form-group">
+						<label for="inputlg"> ▣ 부모번호</label> <input
+							class="form-control input-lg" id="orgnzNo1" name="prntsOrgnzStr"
+							type="text" value="${vo.prntsOrgnzNo }" readonly>
+					</div>
+
+					<c:choose>
+						<c:when test="${vo.orgnzDstnct=='대학원' }">
+							<div class="form-group">
+								<label for="inputlg"> ▣ 부모기관명</label> <input
+									class="form-control input-lg" id="organzinput" name="orgnzFullNm" type="text"
+									value="${vo.orgnzFullNm }" readonly> <input
+									type="button" value="기관검색하기" onclick="openOrganzSearch('대학교')">
+							</div>
+						</c:when>
+						<c:when test="${vo.orgnzDstnct=='학과' }">
+							<div class="form-group">
+								<label for="inputlg"> ▣ 부모기관명</label> <input
+									class="form-control input-lg" id="organzinput" name="orgnzFullNm" type="text"
+									value="${vo.orgnzFullNm }" readonly> <input
+									type="button" value="기관검색하기" onclick="openOrganzSearch('대학원')">
+							</div>
+						</c:when>
+						<c:otherwise></c:otherwise>
+					</c:choose>
+
 
 				</div>
 
@@ -98,5 +131,7 @@ textarea.autosize {
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
 </body>
 </html>

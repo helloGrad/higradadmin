@@ -111,18 +111,18 @@ public class OrganzService {
 	 * 허주한 대학원, 대학교, 학과
 	 */
 
-	public boolean update(OrganzVo organzVo, String type, String prntsOrgnzStr) {
+	public void update(OrganzVo organzVo, String type, String prntsOrgnzStr) {
+		
+		System.out.println(organzVo);
+		System.out.println(type);
+		
 		if (prntsOrgnzStr.isEmpty() || prntsOrgnzStr.equals(null) || prntsOrgnzStr.equals("0")) {
-			organzVo.setPrntsOrgnzNo(0);
+			organzVo.setPrntsOrgnzNo(-1);
 		} else {
 			organzVo.setPrntsOrgnzNo(Integer.parseInt(prntsOrgnzStr));
 		}
 
-		if (type.equals("대학원")) {
-			return organzDao.update(organzVo);
-		}
-
-		return false;
+		organzDao.update(organzVo);
 
 	}
 

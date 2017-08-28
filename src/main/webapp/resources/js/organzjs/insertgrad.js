@@ -1,6 +1,6 @@
 var changFrom = function(selectvalue) {
 	console.log(selectvalue);
-	document.getElementById('orgnzNo').value = '';
+	document.getElementById('orgnzNo1').value = '';
 	document.getElementById('organzinput').value = '';
 	if (selectvalue === '대학원') {
 

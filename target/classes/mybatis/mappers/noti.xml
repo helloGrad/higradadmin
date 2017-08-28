@@ -19,7 +19,7 @@
 			date_format(s.SLCTN_BEGIN_DT,'%Y%m%d') slctnBeginDt, date_format(s.SLCTN_END_DT,'%Y%m%d') slctnEndDt, 
 			s.SLCTN_TITLE slctnTitle, s.SLCTN_TEXT slctnText,s.SUPRT_QUALF suprtQualf, s.SLCTN_NOPS slctnNops, s.SLSN_MTH slsnMth,
 			s.SBMT_DOC_TEXT sbmtDocText, s.CHRGR_DSTNCT chrgrDstnct,s.CHRGR_NM chrgrNm,s.CHRGR_TEL_NO chrgrTelNo,s.CHRGR_EMAIL chrgrEmail, s.SLCTN_NOTI_URL slctnNotiUrl, s.RCP_MTH rcpMth, s.SLSN_BEGIN_DD slsnBeginDd, s.SLSN_END_DD slsnEndDd,
-			s.SLSN_PLAC slsnPlac,s.SCCN_ANCM_DD sccnAncmDd,s.SCCN_ANCM_MTH sccnAncmMth,s.REGST_BEGIN_DD regstBeginDd,s.REGST_END_DD regstEndDd,s.REGST_MTH regstMth
+			s.SLSN_PLAC slsnPlac,s.SCCN_ANCM_DD sccnAncmDd,s.SCCN_ANCM_MTH sccnAncmMth,s.REGST_BEGIN_DD regstBeginDd,s.REGST_END_DD regstEndDd,s.REGST_MTH regstMth, o.orgnz_full_nm orgnzFullNm
 			from slctn_noti s, organz o
 			where s.ORGNZ_NO=o.ORGNZ_NO
 			and s.SLCTN_NOTI_NO=#{no }
@@ -37,7 +37,7 @@
 			s.DORM_SUPRT_YN dormSuprtYn, s.INTERN_YN internYn, s.LRSTY_JOING_YN lrstyJoingYn, s.RESRCH_TASK_JOING_YN resrchTaskJoingYn, s.STDTR_OPPTY_SUPRT_YN stdtrOpptySuprtYn,
 			s.EDU_PGM_JOING_SUPRT_YN eduPgmJoingSuprtYn, s.SUPRT_FVR_TEXT suprtFvrText,
 			s.CHRGR_NM chrgrNm,s.CHRGR_TEL_NO chrgrTelNo,s.CHRGR_EMAIL chrgrEmail,
-			s.SUPRT_QUALF suprtQualf, s.ONLINE_SUPRT_YN onlineSuprtYn, s.PRMRY_RESRCH_FIELD prmryResrchField
+			s.SUPRT_QUALF suprtQualf, s.ONLINE_SUPRT_YN onlineSuprtYn, s.PRMRY_RESRCH_FIELD prmryResrchField, o.orgnz_full_nm orgnzFullNm
 			from slctn_noti s, organz o
 			where s.ORGNZ_NO=o.ORGNZ_NO
 			and s.SLCTN_NOTI_NO=#{no }

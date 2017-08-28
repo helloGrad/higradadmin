@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,8 +37,8 @@
 				<form class="login-form" id="login-form" name="loginform"
 					method="post"
 					action="${pageContext.servletContext.contextPath }/noti/update">
-					<input type="hidden" name="tabnm" value="lab">
-					<input type="hidden" name="slctnNotiNo" value="${vo.slctnNotiNo }">
+					<input type="hidden" name="tabnm" value="lab"> <input
+						type="hidden" name="slctnNotiNo" value="${vo.slctnNotiNo }">
 					<input type="hidden" name="adminNo" value="${authUser.mbNo }">
 					<!--/////////////////////////// main content ///////////////////////////////////// -->
 					<div class=col-lg-8>
@@ -47,8 +49,15 @@
 						</div>
 						<div class="form-group">
 							<label for="inputlg"> ▣ 기관번호</label> <input
-								class="form-control input-lg" id="orgnzNo" name="orgnzNo"
-								type="text" value="${vo.orgnzNo }">
+								class="form-control input-lg" id="orgnzlabNo" name="orgnzNo"
+								type="text" value="${vo.orgnzNo }" readonly>
+						</div>
+
+						<div class="form-group">
+							<label for="inputlg"> ▣ 기관명</label> <input
+								class="form-control input-lg" id="organzinputlab" type="text"
+								value="${vo.orgnzFullNm }" readonly> <input
+								type="button" value="기관검색하기" onclick="openOrganzSearch('연구실')">
 						</div>
 						<div class="row">
 							<!--////////////////////// 모집시작일 //////////////////////-->
@@ -380,5 +389,7 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
 </body>
 </html>
