@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
-			<div class="col-lg-12 centering">
+			<div id="charList" class="col-lg-12 centering">
 				<input id="type" type="hidden" value="${list[0].orgnzDstnct }" />
 				<button id="charBtn1" class="btn btn-primary" value='1'>ㄱ</button>
 				<button id="charBtn2" class="btn btn-primary" value='2'>ㄴ</button>
@@ -20,4 +20,5 @@
 				<button id="charBtn12" class="btn btn-primary" value='12'>ㅌ</button>
 				<button id="charBtn13" class="btn btn-primary" value='13'>ㅍ</button>
 				<button id="charBtn14" class="btn btn-primary" value='14'>ㅎ</button>
+				<button id="charBtn15" class="btn btn-primary" value='15'>기타</button>
 			</div>
