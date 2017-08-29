@@ -47,7 +47,17 @@
 						<option value="대학교">대학교</option>
 						<option value="대학원">대학원</option>
 						<option value="학과">학과</option>
-					</select> <br> <br> <label>기관명:</label> <input type="text"
+					</select> 
+					<c:if test="${param.type=='대학원'}">
+						<br>
+						<label>대학원구분:</label>
+						<select id="grschDstnct" name="grschDstnct">
+							<option value="일반대학원">일반대학원</option>
+							<option value="전문대학원">전문대학원</option>
+							<option value="특수대학원">특수대학원</option>
+						</select> 
+					</c:if>
+					<br> <br> <label>기관명:</label> <input type="text"
 						class="form-control" id="orgnzNm" name="orgnzNm"> <label>기관영문명:</label>
 					<input type="text" class="form-control" id="engOrgnzNm"
 						name="engOrgnzNm"> <label>홈페이지주소:</label> <input

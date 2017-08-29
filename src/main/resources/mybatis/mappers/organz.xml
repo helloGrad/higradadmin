@@ -97,18 +97,25 @@
 	<!-- 허주한 -->
 	<insert id="insertGrad" parameterType="organzVo">
 		<![CDATA[
-		insert into organz (ORGNZ_NM, ENG_ORGNZ_NM, ORGNZ_DSTNCT, HMPAGE_URL, TEL_NO, FAX_NO, ADDR, DETAIL_ADDR, PRNTS_ORGNZ_NO, HMNBRD_DSTNCT, orgnz_full_nm)
+		insert into organz (ORGNZ_NM, ENG_ORGNZ_NM, ORGNZ_DSTNCT, HMPAGE_URL, TEL_NO, FAX_NO, ADDR, DETAIL_ADDR, PRNTS_ORGNZ_NO, HMNBRD_DSTNCT, orgnz_full_nm, GRSCH_DSTNCT)
 		values(#{orgnzNm}, #{engOrgnzNm}, #{orgnzDstnct}, #{hmpageUrl}, #{telNo}, #{faxNo}, #{addr}, #{detailAddr}, 
 		]]>
-
+		<!-- 부모번호 없는경우 (대학교 입력) -->
 		<if test="prntsOrgnzNo == -1 ">
 		<![CDATA[ 
-		 0, #{hmnbrdDstnct}, #{orgnzNm});
+		 0, #{hmnbrdDstnct}, #{orgnzNm}, null);
 		]]>
 		</if>
-		<if test="prntsOrgnzNo != -1">
+		<!-- 부모번호 있는경우 -->
+		<if test="orgnzDstnct == '연구실'">
 		<![CDATA[ 
-		 #{prntsOrgnzNo}, #{hmnbrdDstnct},concat(#{orgnzFullNm},' ',#{orgnzNm}));
+		 #{prntsOrgnzNo}, #{hmnbrdDstnct},concat(#{orgnzFullNm},' ',#{orgnzNm}), null);
+		]]>
+		</if>
+		
+		<if test="orgnzDstnct == '대학원'">
+		<![CDATA[ 
+		 #{prntsOrgnzNo}, #{hmnbrdDstnct},concat(#{orgnzFullNm},' ',#{orgnzNm}), #{grschDstnct});
 		]]>
 		</if>
 
