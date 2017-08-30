@@ -18,20 +18,38 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-	$(
-			function() {
-				$("#hmnbrdDstnct").val("${vo.hmnbrdDstnct}").attr("selected",
-						"selected");
-				$("#orgnzDstnct").val("${vo.orgnzDstnct}").attr("selected",
-						"selected");
+	$(function() {
+		$("#hmnbrdDstnct").val("${vo.hmnbrdDstnct}").attr("selected",
+				"selected");
+		$("#orgnzDstnct").val("${vo.orgnzDstnct}").attr("selected", "selected");
 
-				$("textarea.autosize").on(
-						'keydown keyup',
-						function() {
-							$(this).height(1).height(
-									$(this).prop('scrollHeight') + 12);
-						});
-			})
+		$("textarea.autosize").on('keydown keyup', function() {
+			$(this).height(1).height($(this).prop('scrollHeight') + 12);
+		});
+	})
+</script>
+
+
+<script>
+	function resize(obj) {
+		obj.style.height = "1px";
+		obj.style.height = (20 + obj.scrollHeight) + "px";
+	}
+</script>
+
+
+<script type="text/javascript">
+	//박가혜 2017-08-30
+	$(function() {
+		var codeList = JSON.parse('${codeList}');
+		$('input:checkbox[name="cdlist"]').each(function() {
+			for (var i = 0; i < codeList.length; i++) {
+				if (codeList[i].cdId == this.value) {
+					this.checked = true; //checked 처리
+				}
+			}
+		});
+	});
 </script>
 
 <style>
@@ -66,8 +84,8 @@ textarea.autosize {
 			<form class="updateform" id="updateform" name="updateform"
 				method="post"
 				action="${pageContext.servletContext.contextPath }/organz/update">
-				<input type="hidden" id="type" name="type" value="대학원"> 
-				<input type="hidden" id="orgnzNo" name="orgnzNo" value="${vo.orgnzNo }">
+				<input type="hidden" id="type" name="type" value="대학원"> <input
+					type="hidden" id="orgnzNo" name="orgnzNo" value="${vo.orgnzNo }">
 
 				<div class="form-group">
 
@@ -102,17 +120,48 @@ textarea.autosize {
 						<c:when test="${vo.orgnzDstnct=='대학원' }">
 							<div class="form-group">
 								<label for="inputlg"> ▣ 부모기관명</label> <input
-									class="form-control input-lg" id="organzinput" name="orgnzFullNm" type="text"
-									value="${vo.orgnzFullNm }" readonly> <input
-									type="button" value="기관검색하기" onclick="openOrganzSearch('대학교')">
+									class="form-control input-lg" id="organzinput"
+									name="orgnzFullNm" type="text" value="${vo.orgnzFullNm }"
+									readonly> <input type="button" value="기관검색하기"
+									onclick="openOrganzSearch('대학교')">
 							</div>
+
+							<br>
+							<br>
+						지역: <input type="checkbox" id="AR00001" name="cdlist"
+								value="AR00001" />서울 &nbsp;
+							<input type="checkbox" id="AR00002" name="cdlist" value="AR00002" />세종 &nbsp;
+							<input type="checkbox" id="AR00003" name="cdlist" value="AR00003" />인천 &nbsp;
+							<input type="checkbox" id="AR00004" name="cdlist" value="AR00004" />대전 &nbsp;
+							<input type="checkbox" id="AR00005" name="cdlist" value="AR00005" />대구 &nbsp;
+							<input type="checkbox" id="AR00006" name="cdlist" value="AR00006" />부산 &nbsp;
+							<input type="checkbox" id="AR00007" name="cdlist" value="AR00007" />울산 &nbsp;
+							<input type="checkbox" id="AR00008" name="cdlist" value="AR00008" />광주 &nbsp;
+							<input type="checkbox" id="AR00009" name="cdlist" value="AR00009" />경기 &nbsp;
+							<input type="checkbox" id="AR00010" name="cdlist" value="AR00010" />충북 &nbsp;
+							<input type="checkbox" id="AR00011" name="cdlist" value="AR00011" />충남 &nbsp;
+							<input type="checkbox" id="AR00012" name="cdlist" value="AR00012" />강원 &nbsp;
+							<input type="checkbox" id="AR00013" name="cdlist" value="AR00013" />경북 &nbsp;
+							<input type="checkbox" id="AR00014" name="cdlist" value="AR00014" />경남 &nbsp;
+							<input type="checkbox" id="AR00015" name="cdlist" value="AR00015" />전북 &nbsp;
+							<input type="checkbox" id="AR00016" name="cdlist" value="AR00016" />전남 &nbsp;
+							<input type="checkbox" id="AR00017" name="cdlist" value="AR00017" />제주 &nbsp;
+							<input type="checkbox" id="AR00018" name="cdlist" value="AR00018" />국외 &nbsp;
+						<br>
+							<br>
+						
+						학위: <input type="checkbox" id="DE00001" name="cdlist"
+								value="DE00001" />석사 &nbsp;
+							<input type="checkbox" id="DE00002" name="cdlist" value="DE00002" />박사&nbsp;
+							<input type="checkbox" id="DE00003" name="cdlist" value="DE00003" />석박사통합 &nbsp;
 						</c:when>
 						<c:when test="${vo.orgnzDstnct=='학과' }">
 							<div class="form-group">
 								<label for="inputlg"> ▣ 부모기관명</label> <input
-									class="form-control input-lg" id="organzinput" name="orgnzFullNm" type="text"
-									value="${vo.orgnzFullNm }" readonly> <input
-									type="button" value="기관검색하기" onclick="openOrganzSearch('대학원')">
+									class="form-control input-lg" id="organzinput"
+									name="orgnzFullNm" type="text" value="${vo.orgnzFullNm }"
+									readonly> <input type="button" value="기관검색하기"
+									onclick="openOrganzSearch('대학원')">
 							</div>
 						</c:when>
 						<c:otherwise></c:otherwise>

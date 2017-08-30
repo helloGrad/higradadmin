@@ -78,7 +78,7 @@ textarea {
 						<div id="organzinfo">
 							<div class="form-group">
 								<label for="inputlg"> ▣ 기관번호</label> <input
-									class="form-control input-lg" id="orgnzNo" name="prntsOrgnzNo"
+									class="form-control input-lg" id="orgnzNo1" name="prntsOrgnzNo"
 									"
 									type="text" readonly>
 							</div>
@@ -103,26 +103,58 @@ textarea {
 							<option value="국외">국외</option>
 						</select> <br> <br>
 					</div>
+
+					<div class="form-group">
+						<label for="inputlg"> 지역</label> <input type="checkbox"
+							name="cdlist" value="AR00001">서울&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00002">세종&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00003">인천&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00004">대전&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00005">대구&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00006">부산&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00007">울산&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00008">광주&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00009">경기&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00010">충북&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00011">충남&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00012">강원&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00013">경북&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00014">경남&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00015">전북&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00016">전남&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00017">제주&nbsp; <input
+							type="checkbox" name="cdlist" value="AR00018">국외&nbsp;
+					</div>
+
+					<div class="form-group">
+						<label for="inputlg"> 학위</label> <input type="checkbox"
+							name="cdlist" value="DE00001">석사&nbsp; <input
+							type="checkbox" name="cdlist" value="DE00002">박사&nbsp; <input
+							type="checkbox" name="cdlist" value="DE00003">석박사통합&nbsp;
+					</div>
 					<hr>
 					<button type="submit" class="form-control">입력</button>
 				</form>
 				<hr>
-				
-				
+
+
 				<form class="resrch-form" id="resrch-form" name="resrch-form"
 					method="post"
 					action="${pageContext.servletContext.contextPath }/organz/insert">
-					<input type="hidden" id="orgnzDstnct" name="orgnzDstnct" value="연구실">
+					<input type="hidden" id="orgnzDstnct" name="orgnzDstnct"
+						value="연구실">
 					<div id="organzinfo">
 						<div class="form-group">
 							<label for="inputlg"> ▣ 연구실번호</label> <input
-								class="form-control input-lg" id="orgnzlabNo" name="orgnzNo" type="text" readonly>
+								class="form-control input-lg" id="orgnzlabNo" name="orgnzNo"
+								type="text" readonly>
 						</div>
 
 						<div class="form-group">
 							<label for="inputlg"> ▣ 연구실명</label> <input
-								class="form-control input-lg" id="organzinputlab" type="text" readonly> <input
-								type="button" value="기관검색하기" onclick="openOrganzSearch('연구실')">
+								class="form-control input-lg" id="organzinputlab" type="text"
+								readonly> <input type="button" value="기관검색하기"
+								onclick="openOrganzSearch('연구실')">
 						</div>
 					</div>
 					<br> 실적구분 : <select name="acrsltDstnct">

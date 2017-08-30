@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.grad.admin.security.Auth;
@@ -126,14 +125,13 @@ public class OrganzController {
 		int lastId = 0;
 		ApndngFileVo vo = null;
 
+		
 		System.out.println(organzVo);
 
 		if (organzVo.getOrgnzDstnct().equals("연구실")) {
 
-			System.out.println("연구실적 입력");
 			if (resrchAcrsltVo.getResrchText() == null) { // 연구실입력인 경우
 				organzService.insertLab(organzVo);
-				lastId = organzService.lastInsertId();
 			}
 
 			if (organzVo.getOrgnzNm() == null) { // 연구실적입력인 경우
@@ -143,14 +141,15 @@ public class OrganzController {
 
 		} else {
 			organzService.insert(organzVo, prntsOrgnzStr);
-			lastId = organzService.lastInsertId();
-			/*
-			 * 정예린
-			 */
-			if (cdlist.size() != 0) {
-				organzService.setOgranzInfo(lastId, cdlist);
-			}
+		}
+			
+		lastId = organzService.lastInsertId();
+		/*
+		 * 정예린
+		 */
+		if (cdlist.size() != 0) {
 
+			organzService.setOrganzInfo(lastId, cdlist);
 		}
 
 		// 허주한 서비스로 빼기
@@ -183,20 +182,17 @@ public class OrganzController {
 		/*
 		 * 박가혜 2017-08-30
 		 */
-		if (type.equals("연구실")) {
+		List<CodeVo> codeList = organzService.getOrganzInfo(no);
+		model.addAttribute("codeList", codeList);
+		JSONArray jsonArray = new JSONArray();
+		model.addAttribute("codeList", jsonArray.fromObject(codeList));
+		
+		if (type.equals("연구실")) { //연구실 일 때 update
 
 			model.addAttribute("organzLabList", organzService.getOrganz(no));
-
-			List<CodeVo> codeList = organzService.getOrganzInfo(no);
-
-			model.addAttribute("codeList", codeList);
-
-			JSONArray jsonArray = new JSONArray();
-
-			model.addAttribute("codeList", jsonArray.fromObject(codeList));
-
 			return "organz/labupdatedetail";
-		} else {
+			
+		} else { //기관 일 때 update
 
 			model.addAttribute("vo", organzService.getOrgnzByNo(no, type));
 
@@ -213,11 +209,21 @@ public class OrganzController {
 	@Auth(role = Auth.Role.ADMIN)
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateGrad(Model model, @ModelAttribute OrganzVo organzVo, @RequestParam String type,
-			@RequestParam(value = "prntsOrgnzStr", required = true, defaultValue = "") String prntsOrgnzStr) {
+			@RequestParam(value = "prntsOrgnzStr", required = true, defaultValue = "") String prntsOrgnzStr,
+			@RequestParam(value = "cdlist", required = true, defaultValue = "") List<String> cdlist) {
 		/*
 		 * 박가혜
 		 */
-		System.out.println(type);
+		
+		
+		if(cdlist.size() != 0) { //받아오는게 있을경우만 입력
+			organzService.deleteOrganzInfo(organzVo.getOrgnzNo());
+			organzService.setOrganzInfo(organzVo.getOrgnzNo(),cdlist);
+		}else {
+			
+			organzService.deleteOrganzInfo(organzVo.getOrgnzNo());
+		}
+		
 		if (type.equals("연구실")) {
 
 			organzService.updateOrganz(organzVo);

@@ -111,6 +111,23 @@ public class OrganzService {
 		organzDao.insertResrch(resrchAcrsltVo);
 
 	}
+	
+	
+	/*
+	 * 정예린 맞춤정보 입력 
+	 */
+
+	public void setOrganzInfo(int lastId, List<String> cdlist) {
+
+		CodeVo codeVo = new CodeVo();
+		Integer id = lastId;
+
+		for (int i = 0; i < cdlist.size(); i++) {
+			codeVo.setOrgnzNo(id.longValue());
+			codeVo.setCdId(cdlist.get(i));
+			organzDao.setOgranzInfo(codeVo);
+		}
+	}
 
 	///////////////////////////////////////// update
 	///////////////////////////////////////// ///////////////////////////////////////////////
@@ -156,7 +173,6 @@ public class OrganzService {
 	 * 박가혜 연구실 맞춤정보 입력하기 2017-08-29
 	 */
 	public void deleteOrganzInfo(int orgnzNo) {
-
 		organzDao.deleteOrganzInfo(orgnzNo);
 
 	}
@@ -188,36 +204,6 @@ public class OrganzService {
 		return organzDao.getResultList(map);
 	}
 
-	/*
-	 * 정예린
-	 */
 
-	public void setOgranzInfo(int lastId, List<String> cdlist) {
-
-		CodeVo codeVo = new CodeVo();
-		Integer id = lastId;
-
-		for (int i = 0; i < cdlist.size(); i++) {
-			codeVo.setOrgnzNo(id.longValue());
-			codeVo.setCdId(cdlist.get(i));
-			organzDao.setOgranzInfo(codeVo);
-		}
-	}
-
-	/*
-	 * 박가혜 연구실 맞춤정보 입력하기 2017-08-29
-	 */
-	public void setOrganzInfo(int orgnzNo, List<String> cdlist) {
-
-		for (int i = 0; i < cdlist.size(); i++) {
-
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("orgnzNo", orgnzNo);
-			map.put("cdlist", cdlist.get(i));
-			organzDao.insertOrganzInfo(map);
-
-		}
-
-	}
 
 }

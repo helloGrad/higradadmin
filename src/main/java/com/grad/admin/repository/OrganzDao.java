@@ -71,6 +71,14 @@ public class OrganzDao {
 	public ResrchAcrsltVo getResrchNo(int resrchAcrsltNo) {
 		return sqlSession.selectOne("organz.getResrchNo", resrchAcrsltNo);
 	}
+	
+	/*
+	 * 박가혜 2017-08-29 기관 맞춤정보 가져오기(update 시 기존정보)
+	 */
+	public List<CodeVo> selectOrganzInfo(int orgnzNo) {
+		return sqlSession.selectList("organz.selectOrganzInfo", orgnzNo);
+	}
+
 
 	////////////////////////////////////////////////////////////////// insert
 
@@ -118,6 +126,14 @@ public class OrganzDao {
 	public void updateResrch(ResrchAcrsltVo resrchAcrsltVo) {
 		sqlSession.update("organz.updateResrch", resrchAcrsltVo);
 	}
+	
+	
+	/*
+	 * 박가혜 2017-08-29  맞춤정보 수정 시 기존에 있던 정보를 모두 삭제하고 다시 넣음
+	 */
+	public void deleteOrganzInfo(int orgnzNo) {
+		sqlSession.delete("organz.deleteOrganzInfo", orgnzNo);
+	}
 
 	////////////////////////////////////////////////////////////////// ㄱㄴㄷ페이징
 
@@ -162,7 +178,6 @@ public class OrganzDao {
 	}
 	
 	
-	
 	/*
 	 * 박가혜 2017-08-29
 	 */
@@ -171,16 +186,7 @@ public class OrganzDao {
 	}
 
 	
-	/*
-	 * 박가혜 2017-08-29
-	 */
-	public void deleteOrganzInfo(int orgnzNo) {
-		sqlSession.delete("organz.deleteOrganzInfo", orgnzNo);
-	}
 
-	
-	public List<CodeVo> selectOrganzInfo(int orgnzNo) {
-		return sqlSession.selectList("organz.selectOrganzInfo", orgnzNo);
-	}
+
 
 }
