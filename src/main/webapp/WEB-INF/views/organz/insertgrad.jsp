@@ -75,7 +75,7 @@
 								type="text" readonly>
 						</div>
 						<div class="form-group">
-							<label for="inputlg"> ▣ 부모기관명</label> <input
+							<label for="inputlg"> ▣ 부모기관명dd</label> <input
 								class="form-control input-lg" id="organzinput"
 								name="orgnzFullNm" type="text" readonly>
 							<div id="search"></div>
