@@ -82,9 +82,10 @@
 	<select id="getResrchNo" resultType="resrchAcrsltVo"
 		parameterType="int">
 		<![CDATA[
-		select RESRCH_ACRSLT_NO resrchAcrsltNo,ORGNZ_NO orgnzNo,ACRSLT_DSTNCT acrsltDstnct,REGST_DT regstDt,RESRCH_YYCL resrchYycl,RESRCH_TEXT resrchText
-		from resrch_acrslt
-		where RESRCH_ACRSLT_NO=#{resrchAcrsltNo}
+		select r.RESRCH_ACRSLT_NO resrchAcrsltNo,r.ORGNZ_NO orgnzNo, o.orgnz_full_nm orgnzFullNm, r.ACRSLT_DSTNCT acrsltDstnct,r.REGST_DT regstDt,r.RESRCH_YYCL resrchYycl,r.RESRCH_TEXT resrchText
+		from resrch_acrslt r, organz o
+		where r.RESRCH_ACRSLT_NO=#{resrchAcrsltNo}
+		and r.orgnz_no = o.orgnz_no
 		]]>
 	</select>
 

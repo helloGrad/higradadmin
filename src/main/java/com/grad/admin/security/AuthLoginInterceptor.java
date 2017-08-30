@@ -28,7 +28,6 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
 		String iden = request.getParameter("iden");
 		String pw=request.getParameter("pw");		
 		
-		System.out.println(iden+" "+pw);
 		
 		MemberVo memberVo=  memberService.getUser(iden, pw);
 		

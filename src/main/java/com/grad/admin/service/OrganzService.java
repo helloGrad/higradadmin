@@ -138,8 +138,6 @@ public class OrganzService {
 
 	public void update(OrganzVo organzVo, String type, String prntsOrgnzStr) {
 
-		System.out.println(organzVo);
-		System.out.println(type);
 
 		if (prntsOrgnzStr.isEmpty() || prntsOrgnzStr.equals(null) || prntsOrgnzStr.equals("0")) {
 			organzVo.setPrntsOrgnzNo(-1);
@@ -170,7 +168,7 @@ public class OrganzService {
 	}
 
 	/*
-	 * 박가혜 연구실 맞춤정보 입력하기 2017-08-29
+	 * 박가혜 연구실 맞춤정보 update 2017-08-29
 	 */
 	public void deleteOrganzInfo(int orgnzNo) {
 		organzDao.deleteOrganzInfo(orgnzNo);

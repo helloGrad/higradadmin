@@ -125,8 +125,6 @@ public class OrganzController {
 		int lastId = 0;
 		ApndngFileVo vo = null;
 
-		
-		System.out.println(organzVo);
 
 		if (organzVo.getOrgnzDstnct().equals("연구실")) {
 
@@ -135,7 +133,6 @@ public class OrganzController {
 			}
 
 			if (organzVo.getOrgnzNm() == null) { // 연구실적입력인 경우
-				System.out.println("연구실적 입력");
 				organzService.insertResrch(resrchAcrsltVo);
 			}
 
@@ -213,8 +210,7 @@ public class OrganzController {
 			@RequestParam(value = "cdlist", required = true, defaultValue = "") List<String> cdlist) {
 		/*
 		 * 박가혜
-		 */
-		
+		 */		
 		
 		if(cdlist.size() != 0) { //받아오는게 있을경우만 입력
 			organzService.deleteOrganzInfo(organzVo.getOrgnzNo());
@@ -270,11 +266,8 @@ public class OrganzController {
 	public String search(@RequestParam(value = "stext", required = true, defaultValue = "**") String stext,
 			@RequestParam(value = "type", required = true, defaultValue = "") String type, Model model) {
 
-		System.out.println(stext);
-
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		System.out.println("연구실 기관 update : " + type);
 		map.put("type", type);
 		map.put("stext", stext);
 

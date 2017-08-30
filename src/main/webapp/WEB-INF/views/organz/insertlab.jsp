@@ -132,7 +132,11 @@ textarea {
 							type="checkbox" name="cdlist" value="DE00002">박사&nbsp; <input
 							type="checkbox" name="cdlist" value="DE00003">석박사통합&nbsp;
 					</div>
+
+
+					<br> <br> 연구분야 :
 					<hr>
+
 					<button type="submit" class="form-control">입력</button>
 				</form>
 				<hr>

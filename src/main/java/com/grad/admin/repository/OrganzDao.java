@@ -35,7 +35,6 @@ public class OrganzDao {
 	 */
 	public OrganzVo getOrgnzByNo(Map<String, Object> map) {
 		if (map.get("type").equals("대학교")) {
-			System.out.println("대학교");
 			return sqlSession.selectOne("organz.getUniByNo", map);
 		} else {
 			return sqlSession.selectOne("organz.getOrgnzByNo", map);

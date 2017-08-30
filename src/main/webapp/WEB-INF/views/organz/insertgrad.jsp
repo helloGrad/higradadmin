@@ -16,11 +16,8 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <style type="text/css">
-#organzinfo {
-	display: none;
-}
 
-#organzinfo2 {
+#organzinfo, #organzinfo2, #organzinfo3{
 	display: none;
 }
 </style>
@@ -52,6 +49,7 @@
 						<option value="대학원">대학원</option>
 						<option value="학과">학과</option>
 					</select>
+					
 					<c:if test="${param.type=='대학원'}">
 						<br>
 						<label>대학원구분:</label>
@@ -61,6 +59,11 @@
 							<option value="특수대학원">특수대학원</option>
 						</select>
 					</c:if>
+					
+					<div id='organzinfo3'>
+						학과코드 검색 입력
+					</div>
+					
 					<br> <br> <label>기관명:</label> <input type="text"
 						class="form-control" id="orgnzNm" name="orgnzNm"> <label>기관영문명:</label>
 					<input type="text" class="form-control" id="engOrgnzNm"
@@ -117,6 +120,7 @@
 						</div>
 					</div>
 
+					
 					<!--  <button type="button" onclick="addFile()">파일 추가</button>-->
 					<table id="filetable" cellpadding="5" cellspacing="0">
 						<tr name="tr_attach_file">
