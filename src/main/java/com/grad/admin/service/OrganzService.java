@@ -67,6 +67,13 @@ public class OrganzService {
 		return organzDao.getResrchNo(resrchAcrsltNo);
 	}
 
+	/*
+	 * 박가혜 연구실 맞춤정보 리스트 가져오기 2017-08-29
+	 */
+
+	public List<CodeVo> getOrganzInfo(int orgnzNo) {
+		return organzDao.selectOrganzInfo(orgnzNo);
+	}
 	/////////////////////////////////////////////// insert
 	/////////////////////////////////////////////// ////////////////////////////////////////
 
@@ -145,6 +152,15 @@ public class OrganzService {
 
 	}
 
+	/*
+	 * 박가혜 연구실 맞춤정보 입력하기 2017-08-29
+	 */
+	public void deleteOrganzInfo(int orgnzNo) {
+
+		organzDao.deleteOrganzInfo(orgnzNo);
+
+	}
+
 	///////////////////////////// ㄱㄴㄷ순 페이징 service
 	///////////////////////////// ///////////////////////////////////
 
@@ -180,12 +196,28 @@ public class OrganzService {
 
 		CodeVo codeVo = new CodeVo();
 		Integer id = lastId;
-		
+
 		for (int i = 0; i < cdlist.size(); i++) {
 			codeVo.setOrgnzNo(id.longValue());
 			codeVo.setCdId(cdlist.get(i));
 			organzDao.setOgranzInfo(codeVo);
 		}
+	}
+
+	/*
+	 * 박가혜 연구실 맞춤정보 입력하기 2017-08-29
+	 */
+	public void setOrganzInfo(int orgnzNo, List<String> cdlist) {
+
+		for (int i = 0; i < cdlist.size(); i++) {
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("orgnzNo", orgnzNo);
+			map.put("cdlist", cdlist.get(i));
+			organzDao.insertOrganzInfo(map);
+
+		}
+
 	}
 
 }

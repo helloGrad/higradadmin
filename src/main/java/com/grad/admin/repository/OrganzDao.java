@@ -157,8 +157,30 @@ public class OrganzDao {
 
 	public void setOgranzInfo(CodeVo codeVo) {
 		
-		sqlSession.insert("organz.insertOrganzInfo", codeVo);
+		sqlSession.insert("organz.insertOrganzInfo2", codeVo);
 		
+	}
+	
+	
+	
+	/*
+	 * 박가혜 2017-08-29
+	 */
+	public void insertOrganzInfo(Map<String, Object> map) {
+		sqlSession.insert("organz.insertOrganzInfo", map);
+	}
+
+	
+	/*
+	 * 박가혜 2017-08-29
+	 */
+	public void deleteOrganzInfo(int orgnzNo) {
+		sqlSession.delete("organz.deleteOrganzInfo", orgnzNo);
+	}
+
+	
+	public List<CodeVo> selectOrganzInfo(int orgnzNo) {
+		return sqlSession.selectList("organz.selectOrganzInfo", orgnzNo);
 	}
 
 }

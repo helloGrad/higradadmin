@@ -18,8 +18,11 @@ import com.grad.admin.security.Auth;
 import com.grad.admin.service.ApndngFileService;
 import com.grad.admin.service.OrganzService;
 import com.grad.admin.vo.ApndngFileVo;
+import com.grad.admin.vo.CodeVo;
 import com.grad.admin.vo.OrganzVo;
 import com.grad.admin.vo.ResrchAcrsltVo;
+
+import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/organz")
@@ -178,13 +181,21 @@ public class OrganzController {
 	public String updateGradForm(Model model, @RequestParam int no, @RequestParam String type) {
 
 		/*
-		 * 박가혜
+		 * 박가혜 2017-08-30
 		 */
 		if (type.equals("연구실")) {
 
 			model.addAttribute("organzLabList", organzService.getOrganz(no));
-			return "organz/labupdatedetail";
 
+			List<CodeVo> codeList = organzService.getOrganzInfo(no);
+
+			model.addAttribute("codeList", codeList);
+
+			JSONArray jsonArray = new JSONArray();
+
+			model.addAttribute("codeList", jsonArray.fromObject(codeList));
+
+			return "organz/labupdatedetail";
 		} else {
 
 			model.addAttribute("vo", organzService.getOrgnzByNo(no, type));

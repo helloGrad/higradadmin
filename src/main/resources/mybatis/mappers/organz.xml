@@ -143,7 +143,7 @@
 	</insert>
 
 	<!-- 정예린 -->
-	<insert id="insertOrganzInfo" parameterType="codeVo">
+	<insert id="insertOrganzInfo2" parameterType="codeVo">
 	<![CDATA[	
 			insert into organz_info (orgnz_no, cd_id) 
 			values (#{orgnzNo },#{cdId })
@@ -236,6 +236,34 @@
 			from organz
 			where orgnz_full_nm like '%${stext }%'
 			and (orgnz_dstnct=#{type } or orgnz_dstnct=#{type2 })
+		]]>
+	</select>
+	
+
+	<!-- 박가혜 -->
+	<insert id="insertOrganzInfo" parameterType="string">
+		<![CDATA[	
+			insert into organz_info (ORGNZ_NO, CD_ID ) values (#{orgnzNo},#{cdlist});
+		]]>
+	</insert>
+
+
+	<!-- 박가혜 -->
+	<delete id="deleteOrganzInfo" parameterType="int">
+	<![CDATA[
+	
+		delete from organz_info where ORGNZ_NO=#{orgnzNo };
+		
+	]]>
+
+	</delete>
+
+	<!-- 박가혜 -->
+	<select id="selectOrganzInfo" resultType="codeVo" parameterType="int">
+		<![CDATA[
+		select ORGNZ_NO orgnzNo,CD_ID cdId
+		from organz_info
+		where ORGNZ_NO=#{orgnzNo}
 		]]>
 	</select>
 
