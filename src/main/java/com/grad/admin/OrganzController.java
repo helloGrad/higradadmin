@@ -78,7 +78,6 @@ public class OrganzController {
 		return "organz/list";
 	}
 
-	
 	/*
 	 * 박가혜
 	 */
@@ -91,7 +90,6 @@ public class OrganzController {
 
 		return "organz/resrchlist";
 	}
-
 
 	/////////////////////////////////////////////////////////////////////// insert
 
@@ -117,14 +115,15 @@ public class OrganzController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertGrad(Model model, @ModelAttribute OrganzVo organzVo,
 			@RequestParam(value = "prntsOrgnzStr", required = true, defaultValue = "") String prntsOrgnzStr,
-			@ModelAttribute ResrchAcrsltVo resrchAcrsltVo, 
-			@RequestParam (value = "tabnm", required = true, defaultValue = "") String tabnm, 
-			@RequestParam(value = "attachFile", required = false) MultipartFile[] attachFile) {
-		
+			@ModelAttribute ResrchAcrsltVo resrchAcrsltVo,
+			@RequestParam(value = "tabnm", required = true, defaultValue = "") String tabnm,
+			@RequestParam(value = "attachFile", required = false) MultipartFile[] attachFile,
+			@RequestParam(value = "cdlist", required = true, defaultValue = "") List<String> cdlist) {
+
 		int lastId = 0;
 		ApndngFileVo vo = null;
-		
-		System.out.println(organzVo.getOrgnzDstnct()+"----"+resrchAcrsltVo);
+
+		System.out.println(organzVo);
 
 		if (organzVo.getOrgnzDstnct().equals("연구실")) {
 
@@ -142,13 +141,21 @@ public class OrganzController {
 		} else {
 			organzService.insert(organzVo, prntsOrgnzStr);
 			lastId = organzService.lastInsertId();
+			/*
+			 * 정예린
+			 */
+			if (cdlist.size() != 0) {
+				organzService.setOgranzInfo(lastId, cdlist);
+			}
 
 		}
-		
-		if(attachFile != null) {
-			for(int i=0;i<attachFile.length;i++) {
 
-				if(!attachFile[i].isEmpty()) {
+		// 허주한 서비스로 빼기
+
+		if (attachFile != null) {
+			for (int i = 0; i < attachFile.length; i++) {
+
+				if (!attachFile[i].isEmpty()) {
 					apndngFileService.restore(attachFile[i]);
 					vo = apndngFileService.getFileVo();
 					vo.setPrntsDstnct(organzVo.getOrgnzDstnct());
@@ -162,8 +169,7 @@ public class OrganzController {
 	}
 
 	////////////////////////////////////////////////////////////////////// update
-	
-	
+
 	/*
 	 * 허주한
 	 */
@@ -188,8 +194,8 @@ public class OrganzController {
 			return "organz/updategrad";
 
 		}
-	}	
-	
+	}
+
 	/*
 	 * 허주한
 	 */
@@ -211,7 +217,7 @@ public class OrganzController {
 			return "redirect:/organz/list";
 		}
 	}
-	
+
 	/*
 	 * 박가혜
 	 */
@@ -224,8 +230,8 @@ public class OrganzController {
 		model.addAttribute("resrchAcrsltVo", resrchAcrsltVo);
 
 		return "organz/resrchupdate";
-	}	
-	
+	}
+
 	/*
 	 * 박가혜
 	 */
@@ -237,9 +243,8 @@ public class OrganzController {
 		return "redirect:/organz/lablist";
 	}
 
-
 	//////////////////////////////////////////////////////////////////////// 기관 검색하기
-	
+
 	/*
 	 * 정예린 기관 검색하기 기능
 	 */
@@ -249,20 +254,18 @@ public class OrganzController {
 			@RequestParam(value = "type", required = true, defaultValue = "") String type, Model model) {
 
 		System.out.println(stext);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		System.out.println("연구실 기관 update : "+type);
+
+		System.out.println("연구실 기관 update : " + type);
 		map.put("type", type);
 		map.put("stext", stext);
-		
-		
-		if(type.equals("연구실업데이트")) {
-			map.put("type2","대학원");
+
+		if (type.equals("연구실업데이트")) {
+			map.put("type2", "대학원");
 			map.put("type", "학과");
 		}
 
-		
 		model.addAttribute("list", organzService.getResultList(map));
 		return "/organz/search";
 	}

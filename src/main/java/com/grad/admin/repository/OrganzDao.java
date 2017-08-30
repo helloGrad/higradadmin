@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.grad.admin.vo.CodeVo;
 import com.grad.admin.vo.OrganzVo;
 import com.grad.admin.vo.ResrchAcrsltVo;
 
@@ -148,6 +149,16 @@ public class OrganzDao {
 			return sqlSession.selectList("organz.getResultList", map);
 		}
 
+	}
+	
+	/*
+	 * 정예린
+	 */
+
+	public void setOgranzInfo(CodeVo codeVo) {
+		
+		sqlSession.insert("organz.insertOrganzInfo", codeVo);
+		
 	}
 
 }

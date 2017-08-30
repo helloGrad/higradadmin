@@ -28,7 +28,7 @@
 		]]>
 	</select>
 
-	<!-- 허주한 정예린-->
+	<!-- 허주한 정예린 -->
 	<select id="getOrgnzByNo" parameterType="map" resultType="organzVo">
 		<![CDATA[		
 		select o1.orgnz_no orgnzNo, o1.orgnz_nm orgnzNm, o1.ENG_ORGNZ_NM engOrgnzNm, o1.ORGNZ_DSTNCT orgnzDstnct, o1.HMPAGE_URL hmpageUrl, 
@@ -112,7 +112,7 @@
 		 #{prntsOrgnzNo}, #{hmnbrdDstnct},concat(#{orgnzFullNm},' ',#{orgnzNm}), null);
 		]]>
 		</if>
-		
+
 		<if test="orgnzDstnct == '대학원'">
 		<![CDATA[ 
 		 #{prntsOrgnzNo}, #{hmnbrdDstnct},concat(#{orgnzFullNm},' ',#{orgnzNm}), #{grschDstnct});
@@ -142,9 +142,17 @@
 		]]>
 	</insert>
 
+	<!-- 정예린 -->
+	<insert id="insertOrganzInfo" parameterType="codeVo">
+	<![CDATA[	
+			insert into organz_info (orgnz_no, cd_id) 
+			values (#{orgnzNo },#{cdId })
+		]]>
+	</insert>
+
 
 	<!-- update -->
-	<!-- 허주한  정예린-->
+	<!-- 허주한 정예린 -->
 	<update id="updateGrad" parameterType="organzVo">
 		<![CDATA[
 		update organz
@@ -220,8 +228,8 @@
 			and ORGNZ_DSTNCT = #{type }
 		]]>
 	</select>
-	
-	<!--정예린 연구실의 부모를 찾을 경우 대학원, 학과를 모두 찾음-->
+
+	<!--정예린 연구실의 부모를 찾을 경우 대학원, 학과를 모두 찾음 -->
 	<select id="getResultList2" parameterType="map" resultType="organzVo">
 		<![CDATA[	
 			select orgnz_no orgnzNo, orgnz_full_nm orgnzNm, orgnz_dstnct orgnzDstnct
@@ -230,7 +238,8 @@
 			and (orgnz_dstnct=#{type } or orgnz_dstnct=#{type2 })
 		]]>
 	</select>
-	
+
+
 
 
 </mapper>

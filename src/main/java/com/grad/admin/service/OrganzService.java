@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grad.admin.repository.OrganzDao;
+import com.grad.admin.vo.CodeVo;
 import com.grad.admin.vo.OrganzVo;
 import com.grad.admin.vo.ResrchAcrsltVo;
 
@@ -66,7 +67,8 @@ public class OrganzService {
 		return organzDao.getResrchNo(resrchAcrsltNo);
 	}
 
-	/////////////////////////////////////////////// insert ////////////////////////////////////////
+	/////////////////////////////////////////////// insert
+	/////////////////////////////////////////////// ////////////////////////////////////////
 
 	/*
 	 * 허주한 대학원, 대학교, 학과
@@ -84,7 +86,7 @@ public class OrganzService {
 		}
 		return false;
 	}
-	
+
 	/*
 	 * 박가혜 연구실
 	 */
@@ -103,19 +105,18 @@ public class OrganzService {
 
 	}
 
-
-
-	///////////////////////////////////////// update  ///////////////////////////////////////////////
+	///////////////////////////////////////// update
+	///////////////////////////////////////// ///////////////////////////////////////////////
 
 	/*
 	 * 허주한 대학원, 대학교, 학과
 	 */
 
 	public void update(OrganzVo organzVo, String type, String prntsOrgnzStr) {
-		
+
 		System.out.println(organzVo);
 		System.out.println(type);
-		
+
 		if (prntsOrgnzStr.isEmpty() || prntsOrgnzStr.equals(null) || prntsOrgnzStr.equals("0")) {
 			organzVo.setPrntsOrgnzNo(-1);
 		} else {
@@ -144,7 +145,8 @@ public class OrganzService {
 
 	}
 
-	///////////////////////////// ㄱㄴㄷ순 페이징 service ///////////////////////////////////
+	///////////////////////////// ㄱㄴㄷ순 페이징 service
+	///////////////////////////// ///////////////////////////////////
 
 	/*
 	 * 허주한
@@ -161,14 +163,29 @@ public class OrganzService {
 		return organzDao.getListByChar(map);
 	}
 
-	
 	///////////////////////////// 기관 검색하기 ///////////////////////////////////
-	
+
 	/*
 	 * 정예린 기관 검색하기
 	 */
 	public List<OrganzVo> getResultList(Map<String, Object> map) {
 		return organzDao.getResultList(map);
+	}
+
+	/*
+	 * 정예린
+	 */
+
+	public void setOgranzInfo(int lastId, List<String> cdlist) {
+
+		CodeVo codeVo = new CodeVo();
+		Integer id = lastId;
+		
+		for (int i = 0; i < cdlist.size(); i++) {
+			codeVo.setOrgnzNo(id.longValue());
+			codeVo.setCdId(cdlist.get(i));
+			organzDao.setOgranzInfo(codeVo);
+		}
 	}
 
 }

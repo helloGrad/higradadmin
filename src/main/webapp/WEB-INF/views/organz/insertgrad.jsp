@@ -17,7 +17,11 @@
 
 <style type="text/css">
 #organzinfo {
-	visibility: hidden;
+	display: none;
+}
+
+#organzinfo2 {
+	display: none;
 }
 </style>
 </head>
@@ -47,7 +51,7 @@
 						<option value="대학교">대학교</option>
 						<option value="대학원">대학원</option>
 						<option value="학과">학과</option>
-					</select> 
+					</select>
 					<c:if test="${param.type=='대학원'}">
 						<br>
 						<label>대학원구분:</label>
@@ -55,7 +59,7 @@
 							<option value="일반대학원">일반대학원</option>
 							<option value="전문대학원">전문대학원</option>
 							<option value="특수대학원">특수대학원</option>
-						</select> 
+						</select>
 					</c:if>
 					<br> <br> <label>기관명:</label> <input type="text"
 						class="form-control" id="orgnzNm" name="orgnzNm"> <label>기관영문명:</label>
@@ -75,10 +79,41 @@
 								type="text" readonly>
 						</div>
 						<div class="form-group">
-							<label for="inputlg"> ▣ 부모기관명dd</label> <input
+							<label for="inputlg"> ▣ 부모기관명</label> <input
 								class="form-control input-lg" id="organzinput"
 								name="orgnzFullNm" type="text" readonly>
 							<div id="search"></div>
+						</div>
+					</div>
+					
+					<div id="organzinfo2">
+						<div class="form-group">
+							<label for="inputlg"> 지역</label> 
+							<input type="checkbox" name="cdlist" value="AR00001">서울&nbsp; 
+							<input type="checkbox" name="cdlist" value="AR00002">세종&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00003">인천&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00004">대전&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00005">대구&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00006">부산&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00007">울산&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00008">광주&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00009">경기&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00010">충북&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00011">충남&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00012">강원&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00013">경북&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00014">경남&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00015">전북&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00016">전남&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00017">제주&nbsp;
+							<input type="checkbox" name="cdlist" value="AR00018">국외&nbsp;
+						</div>
+						
+						<div class="form-group">
+							<label for="inputlg"> 학위</label> 
+							<input type="checkbox" name="cdlist" value="DE00001">석사&nbsp; 
+							<input type="checkbox" name="cdlist" value="DE00002">박사&nbsp;
+							<input type="checkbox" name="cdlist" value="DE00003">석박사통합&nbsp;
 						</div>
 					</div>
 

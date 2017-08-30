@@ -4,8 +4,10 @@ var changFrom = function(selectvalue) {
 	document.getElementById('organzinput').value = '';
 	if (selectvalue === '대학원') {
 
-		document.getElementById('organzinfo').style.visibility = 'visible';
+		document.getElementById('organzinfo').style.display = 'block';
+		document.getElementById('organzinfo2').style.display = 'block';
 		document.getElementById('search').innerHTML = "<input type='button' value='기관검색하기' onclick='openOrganzSearch(\"대학교\");'> ";
+		
 	}
 	else if (selectvalue === '학과') {
 		document.getElementById('organzinfo').style.visibility = 'visible';
