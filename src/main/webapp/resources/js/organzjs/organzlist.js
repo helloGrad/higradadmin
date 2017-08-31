@@ -38,7 +38,7 @@ var clickCharBtn = function(){
 			for(var i = 0 ; i<response.data.length ; i++){
 				$("#fetchList").append("<div class='col-md-12'> " +
 				"<h3> " +
-				"<a	href='${pageContext.servletContext.contextPath }/organz/updateform?no=" + response.data[i].orgnzNo +"&type="+response.data[i].orgnzDstnct+"'>"+response.data[i].orgnzFullNm+"</a> "+
+				"<a	href='/admin/organz/updateform?no=" + response.data[i].orgnzNo +"&type="+response.data[i].orgnzDstnct+"'>"+response.data[i].orgnzFullNm+"</a> "+
 				"</h3> " +
 				"<hr> </div>");
 			}

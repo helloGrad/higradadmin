@@ -70,12 +70,16 @@ public class OrganzDao {
 	public ResrchAcrsltVo getResrchNo(int resrchAcrsltNo) {
 		return sqlSession.selectOne("organz.getResrchNo", resrchAcrsltNo);
 	}
-	
+
 	/*
 	 * 박가혜 2017-08-29 기관 맞춤정보 가져오기(update 시 기존정보)
 	 */
 	public List<CodeVo> selectOrganzInfo(int orgnzNo) {
 		return sqlSession.selectList("organz.selectOrganzInfo", orgnzNo);
+	}
+	
+	public List<CodeVo> selectOrganzInfo(Map<String, Object> map) {
+		return sqlSession.selectList("organz.selectOrganzInfo2", map);
 	}
 
 
@@ -108,7 +112,6 @@ public class OrganzDao {
 	 * 허주한
 	 */
 	public void update(OrganzVo vo) {
-		System.out.println(vo);
 		sqlSession.update("organz.updateGrad", vo);
 	}
 
@@ -125,15 +128,20 @@ public class OrganzDao {
 	public void updateResrch(ResrchAcrsltVo resrchAcrsltVo) {
 		sqlSession.update("organz.updateResrch", resrchAcrsltVo);
 	}
-	
-	
+
 	/*
-	 * 박가혜 2017-08-29  맞춤정보 수정 시 기존에 있던 정보를 모두 삭제하고 다시 넣음
+	 * 박가혜 2017-08-29 맞춤정보 수정 시 기존에 있던 정보를 모두 삭제하고 다시 넣음
 	 */
 	public void deleteOrganzInfo(int orgnzNo) {
 		sqlSession.delete("organz.deleteOrganzInfo", orgnzNo);
 	}
 
+	public void deleteOrganzInfo(Map<String, Object> map) {
+		
+		sqlSession.delete("organz.deleteOrganzInfo2", map);
+	}
+
+	
 	////////////////////////////////////////////////////////////////// ㄱㄴㄷ페이징
 
 	/*
@@ -165,18 +173,17 @@ public class OrganzDao {
 		}
 
 	}
-	
+
 	/*
 	 * 정예린
 	 */
 
 	public void setOgranzInfo(CodeVo codeVo) {
-		
+
 		sqlSession.insert("organz.insertOrganzInfo2", codeVo);
-		
+
 	}
-	
-	
+
 	/*
 	 * 박가혜 2017-08-29
 	 */
@@ -184,7 +191,13 @@ public class OrganzDao {
 		sqlSession.insert("organz.insertOrganzInfo", map);
 	}
 
-	
+	/*
+	 * 허주한 2017/08/29
+	 */
+	public List<CodeVo> getCode(String dstnct) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("organz.getCode", dstnct);
+	}
 
 
 
