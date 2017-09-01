@@ -133,7 +133,8 @@
 						<br>
 						<!-- 맞춤정보 입력란 -->
 						<div class="ui-widget">
-							<label for="tags">학과/학부코드 : </label> <input id="tags">
+							<label for="tags">학과/학부코드 : </label> 
+							<input id="tags">
 							<div id="duplicateMsg" style="display: none">중복입니다 !!</div>
 							<div id="cdNmList"></div>
 						</div>
@@ -172,6 +173,8 @@
 		src="${pageContext.request.contextPath}/resources/js/organzjs/file.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/organzjs/autoCompleteSroll.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad.js"></script>
 	<script type="text/javascript"

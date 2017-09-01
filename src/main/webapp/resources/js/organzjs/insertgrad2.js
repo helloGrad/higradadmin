@@ -4,7 +4,6 @@ $( function() {
 	
 	var type = $("#type").val()
 	if(type=="학과"){
-		console.log("+++++"+type)
 		fetchListByType2();
 	}
 	

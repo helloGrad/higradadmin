@@ -36,9 +36,6 @@ textarea {
     /* IE 6 doesn't support max-height
      * we use height instead, but this forces the menu to always be this tall
      */
-  
-  
-  
 </style>
 
 
@@ -53,10 +50,6 @@ textarea {
 <script type="text/javascript">
 var index=0;
 var codeList = JSON.parse('${codeList}');
-	
-	
-	
-	
 </script>
 
 

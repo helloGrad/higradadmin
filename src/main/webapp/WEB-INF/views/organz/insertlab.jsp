@@ -208,7 +208,9 @@ textarea {
 		src="${pageContext.request.contextPath}/resources/js/organzjs/organzlist.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
-			<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad.js"></script>  
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/organzjs/autoCompleteSroll.js"></script>    
 </body>
 </html>
