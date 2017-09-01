@@ -21,10 +21,26 @@ textarea {
 	width: 300px;
 	overflow: visible
 }
-
 #organzinfo {
 	visibility: visible;
+	
+	
 }
+    /* autocomplete 스크롤 관련 css*/
+.ui-autocomplete {
+            max-height: 100px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+            /* add padding to account for vertical scrollbar */
+            padding-right: 20px;
+    }
+    /* IE 6 doesn't support max-height
+     * we use height instead, but this forces the menu to always be this tall
+     */
+  
+    
+    
 </style>
 
 
@@ -61,7 +77,7 @@ textarea {
 					action="${pageContext.servletContext.contextPath }/organz/insert?type=연구실">
 					<div class="form-group">
 						<input type="hidden" id="tabnm" name="tabnm" value="lab">
-
+						<input type="hidden" id="type" name="type" value="${param.type }">
 						연구실 이름: <input type="text" class="form-control" id="orgnzNm"
 							name="orgnzNm"> <br> 연구실 영문명 이름 : <input type="text"
 							class="form-control" id="engOrgnzNm" name="engOrgnzNm"> <br>
@@ -82,14 +98,12 @@ textarea {
 									"
 									type="text" readonly>
 							</div>
-
 							<div class="form-group">
 								<label for="inputlg"> ▣ 기관명</label> <input
 									class="form-control input-lg" id="organzinput"
 									name="orgnzFullNm" type="text" readonly> <input
 									type="button" value="기관검색하기" onclick="openOrganzSearch('학과')">
 							</div>
-
 						</div>
 						<br> 교수님 성명: <input type="text" class="form-control"
 							id="mapProfNm" name="mapProfNm"> <br> 연구실 소개:
@@ -103,7 +117,6 @@ textarea {
 							<option value="국외">국외</option>
 						</select> <br> <br>
 					</div>
-
 					<div class="form-group">
 						<label for="inputlg"> 지역</label> <input type="checkbox"
 							name="cdlist" value="AR00001">서울&nbsp; <input
@@ -125,23 +138,33 @@ textarea {
 							type="checkbox" name="cdlist" value="AR00017">제주&nbsp; <input
 							type="checkbox" name="cdlist" value="AR00018">국외&nbsp;
 					</div>
-
 					<div class="form-group">
 						<label for="inputlg"> 학위</label> <input type="checkbox"
 							name="cdlist" value="DE00001">석사&nbsp; <input
 							type="checkbox" name="cdlist" value="DE00002">박사&nbsp; <input
 							type="checkbox" name="cdlist" value="DE00003">석박사통합&nbsp;
 					</div>
-
-
-					<br> <br> 연구분야 :
+					
+					
+					
+					<!-- 맞춤정보 입력란 -->
+					<div class="ui-widget">
+  					<label for="tags">Tags: </label>
+  					<input id="tags">
+  					<div id="duplicateMsg" style="display: none">중복입니다 !!</div>
+  					<div id="cdNmList">
+  					</div>
+					</div>
+					<br> <br>
+					
+					
+				</div>
+					
+					
 					<hr>
-
 					<button type="submit" class="form-control">입력</button>
 				</form>
 				<hr>
-
-
 				<form class="resrch-form" id="resrch-form" name="resrch-form"
 					method="post"
 					action="${pageContext.servletContext.contextPath }/organz/insert">
@@ -153,7 +176,6 @@ textarea {
 								class="form-control input-lg" id="orgnzlabNo" name="orgnzNo"
 								type="text" readonly>
 						</div>
-
 						<div class="form-group">
 							<label for="inputlg"> ▣ 연구실명</label> <input
 								class="form-control input-lg" id="organzinputlab" type="text"
@@ -174,15 +196,11 @@ textarea {
 					<textarea class="form-control" onkeydown="resize(this)"
 						onkeyup="resize(this)" id="resrchText" name="resrchText"></textarea>
 					<br>
-
 					<button type="submit" class="form-control">입력</button>
 				</form>
 			</div>
 		</div>
-
-
 	</div>
-
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
@@ -190,5 +208,7 @@ textarea {
 		src="${pageContext.request.contextPath}/resources/js/organzjs/organzlist.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
+			<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad.js"></script>  
 </body>
 </html>

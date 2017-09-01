@@ -75,13 +75,12 @@ public class OrganzService {
 	public List<CodeVo> getOrganzInfo(int orgnzNo) {
 		return organzDao.selectOrganzInfo(orgnzNo);
 	}
-	
 
 	/*
 	 * 정예린 학과 맞춤정보 리스트 가져오기 2017-08-31
 	 */
-	
-	public List<CodeVo> getOrganzInfo(int no, String type) {	
+
+	public List<CodeVo> getOrganzInfo(int no, String type) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("no", no);
 		map.put("type", type);
@@ -141,28 +140,41 @@ public class OrganzService {
 			organzDao.setOgranzInfo(codeVo);
 		}
 	}
-	
+
 	/*
 	 * 정예린 2017-08-30 학과 입력
 	 */
-	
+
 	public void setOrganzInfo(int lastId, CodeForm codeForm) {
-		
+
 		CodeVo codeVo = new CodeVo();
 		Integer id = lastId;
 		codeVo.setOrgnzNo(id.longValue());
-		
-		for (int i = 0; i < codeForm.getCodes2().size(); i++) {
-			codeVo.setCdId(codeForm.getCodes2().get(i).getCdId());
-			organzDao.setOgranzInfo(codeVo);
+
+		if (codeForm.getCodes2() != null) {
+			for (int i = 0; i < codeForm.getCodes2().size(); i++) {
+				if (codeForm.getCodes2().get(i).getCdId() != null) {
+					codeVo.setCdId(codeForm.getCodes2().get(i).getCdId());
+					organzDao.setOgranzInfo(codeVo);
+				}
+			}
+
 		}
-		for (int i = 0; i < codeForm.getCodes().size(); i++) {
-			codeVo.setCdId(codeForm.getCodes().get(i).getCdId());
-			organzDao.setOgranzInfo(codeVo);
+
+		if (codeForm.getCodes() != null) {
+			
+			for (int i = 0; i < codeForm.getCodes().size(); i++) {
+				if (codeForm.getCodes().get(i).getCdId() != null) {
+					codeVo.setCdId(codeForm.getCodes().get(i).getCdId());
+					organzDao.setOgranzInfo(codeVo);
+				}
+
+			}
+
 		}
-		
+
 	}
-	
+
 	///////////////////////////////////////// update
 	///////////////////////////////////////// ///////////////////////////////////////////////
 
@@ -207,7 +219,7 @@ public class OrganzService {
 		organzDao.deleteOrganzInfo(orgnzNo);
 
 	}
-	
+
 	/*
 	 * 정에린 2017-08-31
 	 */
@@ -216,7 +228,7 @@ public class OrganzService {
 		map.put("no", orgnzNo);
 		map.put("type", type);
 		organzDao.deleteOrganzInfo(map);
-		
+
 	}
 
 	///////////////////////////// ㄱㄴㄷ순 페이징 service
@@ -247,14 +259,14 @@ public class OrganzService {
 	}
 
 	///////////////////////////////////////////// 맞춤검색/////////////////////////////////
-	
+
 	/*
 	 * 허주한 2017/08/29
 	 */
 	public List<CodeVo> getCode(String type) {
 		// TODO Auto-generated method stub
 		String dstnct = null;
-		
+
 		if (type.equals("학과")) {
 			dstnct = "학과";
 		} else if (type.equals("연구실")) {
@@ -265,13 +277,5 @@ public class OrganzService {
 
 		return organzDao.getCode(dstnct);
 	}
-
-
-
-
-
-
-
-
 
 }

@@ -17,6 +17,15 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<c:if test="${vo.orgnzDstnct=='학과' }">
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad2.js"></script>
+</c:if>
+
+
+
 <script type="text/javascript">
 	$(function() {
 		$("#hmnbrdDstnct").val("${vo.hmnbrdDstnct}").attr("selected",
@@ -30,6 +39,8 @@
 </script>
 
 
+
+
 <script>
 	function resize(obj) {
 		obj.style.height = "1px";
@@ -39,66 +50,64 @@
 
 
 <script type="text/javascript">
+	
+	
 	//박가혜 2017-08-30
 	$(function() {
+
 		var codeList = JSON.parse('${codeList}');
-		var codeList1 = JSON.parse('${codeList1}');
-		var codeList2 = JSON.parse('${codeList2}');
+		codeList1 = JSON.parse('${codeList1}'); 
+		codeList2 = JSON.parse('${codeList2}'); 
 		var type2 = $("#type").val();
 
 		//하나를 선택하면 지워지고 다시 선택되어지게 수정!!!!!!!!!!
 
 		if (type2 === '학과') {
+
 			$("#cdNmList")
-					.append(
-							"<div id='"
+			.append(
+					"<div id='"
 							+ codeList1[0].cdId
 							+ "'><span id='cdNm' name='cdNm' val='"
 							+ codeList1[0].cdNm
 							+ "'>"
-									+ codeList1[0].cdNm
-									+ "</span>"
-									+ "<button id='deleteBtn' type='button' onclick='clickDelete(\""
-									+ codeList1[0].cdId
-									+ "\");' class='btn'>X</button>"
-									+ "<input type='hidden' name='codes["
-							+ 0
-							+ "].cdId' value='"
-							+ codeList1[0].cdId
-							+ "'>"
-									+ "<input type='hidden' name='codes["
-							+ 0
-							+ "].cdNm' value='"
 							+ codeList1[0].cdNm
-							+ "'>"
-									+ "</div>")
-
+							+ "</span>"
+							+ "<button id='deleteBtn' type='button' onclick='clickDelete(\""
+							+ codeList1[0].cdId
+							+ "\");' class='btn'>X</button>"
+							+ "<input type='hidden' name='codes[" + 0
+							+ "].cdId' value='" + codeList1[0].cdId + "'>"
+							+ "<input type='hidden' name='codes[" + 0
+							+ "].cdNm' value='" + codeList1[0].cdNm + "'>"
+							+ "</div>")
+				index++;
+				checkList.push(codeList1[0].cdNm);
+				
 			for (var i = 0; i < codeList2.length; i++) {
 				$("#cdNmList2")
 						.append(
 								"<div id='"
-							+ codeList2[i].cdId
-							+ "'><span id='cdNm' name='cdNm' val='"
-							+ codeList2[i].cdNm
-							+ "'>"
+										+ codeList2[i].cdId
+										+ "'><span id='cdNm' name='cdNm' val='"
+										+ codeList2[i].cdNm
+										+ "'>"
 										+ codeList2[i].cdNm
 										+ "</span>"
 										+ "<button id='deleteBtn' type='button' onclick='clickDelete(\""
 										+ codeList2[i].cdId
 										+ "\");' class='btn'>X</button>"
 										+ "<input type='hidden' name='codes2["
-							+ index2
-							+ "].cdId' value='"
-							+ codeList2[i].cdId
-							+ "'>"
+										+ index2 + "].cdId' value='"
+										+ codeList2[i].cdId + "'>"
 										+ "<input type='hidden' name='codes2["
-							+ index2
-							+ "].cdNm' value='"
-							+ codeList2[i].cdNm
-							+ "'>"
+										+ index2 + "].cdNm' value='"
+										+ codeList2[i].cdNm + "'>"
 										+ "</div>")
+				checkList.push(codeList2[i].cdNm);
 				index2++;
 			}
+
 		} else {
 			$('input:checkbox[name="cdlist"]').each(function() {
 				console.log(codeList.length);
@@ -118,6 +127,16 @@
 <style>
 textarea.autosize {
 	min-height: 50px;
+}
+
+/* autocomplete 스크롤 관련 css*/
+.ui-autocomplete {
+	max-height: 100px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/* add padding to account for vertical scrollbar */
+	padding-right: 20px;
 }
 </style>
 </head>
@@ -183,35 +202,7 @@ textarea.autosize {
 					</c:if>
 
 
-					<c:if test="${vo.orgnzDstnct == '학과' }">
-						<br>
-						<!-- 맞춤정보 입력란 -->
-						<div class="ui-widget">
-							<label for="tags">학과/학부 코드 : </label> <input id="tags">
-							<div id="cdNmList"></div>
-						</div>
-						<div class="ui-widget">
-							<label for="tags">전공코드 : </label> <input id="tags2">
-							<div id="cdNmList2"></div>
-						</div>
-						<div class="checkbox">
-							<c:choose>
-								<c:when test="${vo.aboltYn=='Y' }">
-									<label class="btn-lg btn-default btn-block"> <input
-										name="aboltYn" type="checkbox" checked="checked"
-										value="Y">폐지여부
-									</label>
-								</c:when>
-								<c:otherwise>
-									<label class="btn-lg btn-default btn-block"> <input
-										name="aboltYn" type="checkbox" value="Y">폐지여부		
-									</label>
-								</c:otherwise>
-							</c:choose>
 
-						</div>
-						<br>
-					</c:if>
 					<br> <label>기관명:</label> <input type="text"
 						class="form-control" id="orgnzNm" name="orgnzNm"
 						value="${vo.orgnzNm }"> <label>기관영문명:</label> <input
@@ -285,6 +276,37 @@ textarea.autosize {
 						<c:otherwise></c:otherwise>
 					</c:choose>
 
+					<c:if test="${vo.orgnzDstnct == '학과' }">
+						<br>
+						<!-- 맞춤정보 입력란 -->
+						<div class="ui-widget">
+							<label for="tags">학과/학부 코드 : </label> <input id="tags">
+							<div id="duplicateMsg" style="display: none">중복입니다 !!</div>
+							<div id="cdNmList"></div>
+						</div>
+						<div class="ui-widget">
+							<label for="tags">전공코드 : </label> <input id="tags2">
+							<div id="duplicateMsg" style="display: none">중복입니다 !!</div>
+							<div id="cdNmList2"></div>
+						</div>
+						<div class="checkbox">
+							<c:choose>
+								<c:when test="${vo.aboltYn=='Y' }">
+									<label class="btn-lg btn-default btn-block"> <input
+										name="aboltYn" type="checkbox" checked="checked" value="Y">폐지여부
+									</label>
+								</c:when>
+								<c:otherwise>
+									<label class="btn-lg btn-default btn-block"> <input
+										name="aboltYn" type="checkbox" value="Y">폐지여부
+									</label>
+								</c:otherwise>
+							</c:choose>
+
+						</div>
+						<br>
+					</c:if>
+
 
 				</div>
 
@@ -300,12 +322,7 @@ textarea.autosize {
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
-	<c:if test="${vo.orgnzDstnct=='학과' }">
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad.js"></script>
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad2.js"></script>
-	</c:if>
+
 
 
 </body>

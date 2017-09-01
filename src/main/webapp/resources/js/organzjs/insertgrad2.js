@@ -1,3 +1,5 @@
+var codeList2;
+
 $( function() {
 	
 	var type = $("#type").val()
@@ -8,8 +10,10 @@ $( function() {
 	
     
     $( "#tags2" ).autocomplete({
-    	maxShowItems: 5,
+    	minLength: 0,
+    	delay:0,
     	source: function(request, response) {
+    		$("#duplicateMsg2").css("display","none");
             var results2 = $.ui.autocomplete.filter(availableTags2, request.term);
 
             if (!results2.length) {
@@ -20,11 +24,11 @@ $( function() {
         },
         select: function(event, ui, request, response){
         	
-//        	if(checkDuplicate(ui.item.label)){
-//        		console.log("중복");
-//        		alert("중복선택입니다");
-//        		return;
-//        	}
+        	if(checkDuplicate(ui.item.label)){
+          		$("#duplicateMsg2").css("display","block");
+          		$("#tags2").select();
+          		return;
+          	}
         	
         	if(ui.item.label===NoResultsMsg){
         		event.preventDefault();
@@ -36,33 +40,27 @@ $( function() {
         						"<input type='hidden' name='codes2["+index2+"].cdId' value='"+resultSet2[no]["cdId"]+"'>" +
         						"<input type='hidden' name='codes2["+index2+"].cdNm' value='"+resultSet2[no]["cdNm"]+"'>" +
         						"</div>")
+        		checkList.push(ui.item.label);
         		index2 ++;
 
         	}
         }
+    }).focus(function () {
+        window.pageIndex = 0;
+        $(this).autocomplete("search");
     });
+    
+    $( "#tags2" ).click(function() {
+    	$("#tags2").val("");
+    });
+    
   } );
 
 var availableTags2 = new Array();
 var resultSet2 = new Array();
 var NoResultsMsg = "검색 결과가 없음";
 var index2=0;
-//var checkList = [];
-var clickDelete=function(id){
-	//선택제거되면 리스트에 다시 추가
-	$("#"+id).remove();
-}
 
-var checkDuplicate = function(name){
-	
-	for(var i=0;i<checkList.length;i++){
-		if(checkList[i]===name){
-			return true;
-		}
-	}
-	return false;
-	
-}
 
 var fetchListByType2=function(){
 	
@@ -92,3 +90,5 @@ var findNo2=function(name){
 		}
 	}
 }
+
+

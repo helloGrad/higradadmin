@@ -13,6 +13,17 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style type="text/css">
+/* autocomplete 스크롤 관련 css*/
+.ui-autocomplete {
+	max-height: 100px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/* add padding to account for vertical scrollbar */
+	padding-right: 20px;
+}
+</style>
 
 </head>
 <body>
@@ -47,23 +58,6 @@
 							<option value="전문대학원">전문대학원</option>
 							<option value="특수대학원">특수대학원</option>
 						</select>
-					</c:if>
-
-
-					<c:if test="${param.type == '학과' }">
-						<br>
-						<!-- 맞춤정보 입력란 -->
-						<div class="ui-widget">
-							<label for="tags">학과코드 : </label> <input id="tags">
-							<div id="cdNmList"></div>
-						</div>
-
-						<!-- 전공 입력란 -->
-						<div class="ui-widget">
-							<label for="tags2">전공코드 : </label> <input id="tags2">
-							<div id="cdNmList2"></div>
-						</div>
-						<br>
 					</c:if>
 
 
@@ -135,6 +129,24 @@
 						</div>
 					</c:if>
 
+					<c:if test="${param.type == '학과' }">
+						<br>
+						<!-- 맞춤정보 입력란 -->
+						<div class="ui-widget">
+							<label for="tags">학과/학부코드 : </label> <input id="tags">
+							<div id="duplicateMsg" style="display: none">중복입니다 !!</div>
+							<div id="cdNmList"></div>
+						</div>
+
+						<!-- 전공 입력란 -->
+						<div class="ui-widget">
+							<label for="tags2">전공코드 : </label> <input id="tags2">
+							<div id="duplicateMsg2" style="display: none">중복입니다 !!</div>
+							<div id="cdNmList2"></div>
+						</div>
+						<br>
+					</c:if>
+
 
 					<!--  <button type="button" onclick="addFile()">파일 추가</button>-->
 					<table id="filetable" cellpadding="5" cellspacing="0">
@@ -162,8 +174,8 @@
 		src="${pageContext.request.contextPath}/resources/js/search.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad.js"></script>
- 	 <script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad2.js"></script>  
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/organzjs/insertgrad2.js"></script>
 
 </body>
 </html>
